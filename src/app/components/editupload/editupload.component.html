@@ -1,23 +1,37 @@
 <body>
-  <div class="header" style="display: flex; align-items: center;">
-      <img src="/assets/photo/mine2.png" style="margin-right: 10px; width: 80px;">
-      <h1 class="title">Battle Craft</h1>
-    </div>
+  <div class="header" style="display: flex; align-items: center; margin-left: 5%; margin-top: 3%;">
+      <img src="assets/image/mine2.png" style="margin-right: 10px; width: 80px; height: 80px;">
+      <h1 class="title" style="color: aliceblue;">Battle Craft</h1>
+  </div>
   
-    <mat-card class="transparent-card">
-      <div style="position: relative; display: flex; align-items: center;">
-        <img src="/assets/photo/mine5.png" style="margin-right: 10px; width: 20%;">
-        <mat-icon class="edit-icon" style="color: red;">delete</mat-icon>
-        <input matInput type="text" placeholder="ชื่อภาพ:" style="padding-left: 30px; margin-left: 5px; margin-top: 10px;">
-        <mat-icon class="material-icons">edit</mat-icon>
+  <mat-card class="transparent-card">
+      <div style="display: flex; align-items: center; margin-top: 5%;">
+          <div style="position: relative; display: flex; align-items: center;">
+              <img src="assets/image/mine5.png" style="margin-right: 10px; width: 400px; height: 400px;">
+              <div style="position: absolute; bottom: 0; width: 100%; display: flex; justify-content: center;">
+                  <button mat-flat-button color="warn">
+                      <mat-icon style="font-size: 160%;margin-left: 4%;">delete</mat-icon>
+                  </button>
+              </div>
+          </div>
+
+          <div class="input" style="margin-left: 10px; display: flex; flex-direction: column; margin-top: -15%;">
+              <div style="position: relative; display: flex; align-items: center; margin-top: 10px;">
+                  <input matInput type="text" placeholder="ชื่อภาพ:" style="padding-left: 40px; width: 400px;">
+                  <mat-icon class="material-icons" style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px;">edit</mat-icon>
+              </div>
+              
+              <div style="position: relative; display: flex; align-items: center; margin-top: 10px;">
+                  <mat-icon class="material-icons" style="position: absolute; top: 50%; transform: translateY(-50%); margin-left: 2%; margin-top: -0%;">image</mat-icon>
+                  <input matInput type="text" placeholder=":" style="padding-left: 40px; width: 400px; margin-top: 10px;">
+                  <mat-icon class="material-icons" style="position: absolute; top: 50%; transform: translateY(-50%); right: 5px;">edit</mat-icon>
+              </div>
+          </div>
+         
       </div>
-    
-      <div style="position: relative; display: flex; align-items: center;">
-        <mat-icon class="material-icons" style="position: absolute; top: 50%; transform: translateY(-50%); left: 15px;">image</mat-icon>
-        <input matInput type="text" placeholder=":" style="padding-left: 30px; margin-left: 5px; margin-top: 10px;">
-        <mat-icon class="material-icons">edit</mat-icon>
-      </div>
-    </mat-card>
-    
-    
+      <div class="example-button-row" style="margin-left: 80%;margin-top: 5%;">
+              <button mat-raised-button style="margin-right: 10%;">Cancel</button>
+              <button mat-raised-button>Save</button>
+          </div>
+  </mat-card>
 </body>

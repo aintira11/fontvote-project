@@ -26,6 +26,7 @@ export class MyprofileComponent {
 
 
   data: any;
+  photo: any;
   constructor(private Constants: Constants, private route: ActivatedRoute, private http: HttpClient,private router : Router,private location : Location) { }
   dataLogin: modelUser[] = [];
 
@@ -36,6 +37,7 @@ export class MyprofileComponent {
         
     });
     console.log(this.data);
+    this.myphoto(this.data.User_Id);
   }
   
   uploadPhoto(User_Id : number) {
@@ -66,5 +68,12 @@ export class MyprofileComponent {
         this.router.navigate(['/login']);
       }
       
-
+      myphoto(User_Id : any) {
+        const url = this.Constants.API_ENDPOINT+'/myPhoto/User_Id?User_Id='+User_Id;
+        // ส่งคำขอ GET ไปยัง URL ที่มีค่า User_Id แทนใน URL
+        this.http.get(url).subscribe((response: any) => {
+          this.photo = response; // กำหนดค่า constants เป็นข้อมูลรูปภาพที่ได้รับจากเซิร์ฟเวอร์
+          console.log(this.Constants); // แสดงข้อมูลรูปภาพในคอนโซล
+        });
+      }
 }

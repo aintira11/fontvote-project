@@ -46,7 +46,9 @@
         <div style="display: flex; flex-direction: row; width: 100%; margin-top: 20px; ">
          
             <button mat-button style="transform: scale(1.3);" routerLink="/myprofile/post">Post</button>
+            <div *ngIf="photo.length < 5" style="width: 100%;">
             <button mat-button style="transform: scale(1.3); margin-left: 13%;" (click)="uploadPhoto(data.User_Id)">Upload Photo</button>
+            </div>
             <button mat-button style="transform: scale(1.3); margin-left: 13%;" (click)="post()">Statistics</button>
        
         </div>

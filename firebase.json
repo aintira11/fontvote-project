@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/Project-vote-Copy (2)-Copy/browser",
+    "public": "dist/project-vote/browser",
     "ignore": [
       "firebase.json",
       "**/.*",

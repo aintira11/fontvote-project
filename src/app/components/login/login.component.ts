@@ -76,12 +76,10 @@ export class LoginComponent {
         this.router.navigate(['/'], { state: { data: this.dataLogin[0] } });
 
       }
+    }else{
+      alert("Please check your password and email again.");
     }
   }
-  // printData() {
-  //   const url = this.Constants.API_ENDPOINT+this.dataLogin[0].Avatar;
-  //   this.image_bigin = url;
-  // }
 
   signUp() {
     this.router.navigate(['/members']);

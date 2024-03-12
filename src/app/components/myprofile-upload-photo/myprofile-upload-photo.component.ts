@@ -68,6 +68,7 @@ export class MyprofileUploadPhotoComponent {
       if (!fileInput || !fileInput.files || fileInput.files.length === 0) {
         alert('Please select an image file');
         return;
+        
       }
   
       const formData = new FormData();
@@ -87,6 +88,7 @@ export class MyprofileUploadPhotoComponent {
           alert('An error occurred while uploading image.');
         }
       );
+      this.back();
     }
 
     back() {

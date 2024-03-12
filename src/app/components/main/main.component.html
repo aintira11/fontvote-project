@@ -94,7 +94,7 @@
                     </div>
                     <div style="width: 85%; ">
                         <h3 style="margin-top: 2px;"> {{r.Name_photo}}</h3>
-                        <p style="margin-top: -10px;" >BY : {{r.UserName}}</p >
+                        <p style="margin-top: -10px;" (click)="WhoProfile(r.User_Id)" >BY : {{r.UserName}}</p >
                     </div>
                     <div style="width:5% ;">
                         <h3>{{r.Score}}</h3>

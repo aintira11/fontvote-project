@@ -1,0 +1,14 @@
+.image-frame {
+    text-align: center;
+    width: 100%;
+    height: 50%;
+    margin-top: 5%;
+}
+img {
+    transform: scale(1.5);
+    width: 900px; /* ปรับขนาดรูปตามที่ต้องการ */
+    height: 200px; /* ปรับขนาดรูปตามที่ต้องการ */
+    object-fit: cover; /* ปรับขนาดรูปภาพให้เต็มพื้นที่ของขนาดที่กำหนด */
+    z-index: -1; /* ให้รูปภาพอยู่ด้านหลังของทุกอย่าง */
+}
+

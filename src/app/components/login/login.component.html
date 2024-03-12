@@ -1,0 +1,30 @@
+
+<body>
+    <!-- <div *ngIf=""> -->
+    <button (click)="goback()" mat-button style="display: flex; align-items: center; margin-left: 2%; margin-top: 1%;">
+        <mat-icon class="material-symbols-outlined" style="color: aliceblue; transform: scale(1.5); font-size: 110%;">arrow_back_ios</mat-icon>
+        <h1 style="color: aliceblue; margin-top: 20%;">Back</h1>
+    </button>
+
+    <mat-card>
+        <div class="login-container">
+            <div class="header" style="display: flex; align-items: center;">
+                <img src="/assets/photo/mine2.png" style="margin-right: 10px; width: 50px; height: 50px;">
+                <h1 class="title">Battle Craft</h1>
+            </div><br>
+            
+        <form   [formGroup]="fromreister" style="width: 100%;">
+            <input matInput type="text" placeholder="Email"      id="Email" formArrayName="Email" #Email><br>
+            <input matInput type="password" placeholder="Password" id="Password" formArrayName="Password" #Password>
+            <br>
+            <div class="button-container" style="width: 100%; margin-top: 10px;">
+                <button mat-raised-button style="margin-left: -3px;" (click)="signIn(Email,Password)">Sign in</button>
+                <button mat-raised-button  (click)="signUp()" >Sign up</button>
+                
+            </div> 
+        </form>
+        </div>
+    
+</mat-card>
+<!-- </div> -->
+</body>

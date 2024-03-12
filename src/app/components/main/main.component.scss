@@ -1,0 +1,58 @@
+button{
+    border-radius: 30px;
+    font-size: medium;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+}
+h3{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-image: url('/assets/photo/hbg2.jpg');
+    background-size: cover;
+    filter: blur(4px); 
+  }
+  
+  body {
+    overflow-y: auto;
+    color: white;
+  }
+
+.zoom {
+  transition: transform 0.6s;
+  margin: 0 auto;
+  position: relative; 
+  z-index: 1;
+
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.zoom:hover {
+//   transform: scale(1.2); 
+// transform: rotateY(180deg);
+
+  filter: opacity(50%);
+//   filter: grayscale(1);
+  cursor: pointer;
+}
+.filter {
+    transition: transform 0.6s;
+    margin: 0 auto;
+    position: relative; 
+    z-index: 1;
+}
+.filter:hover {
+    cursor: pointer;
+    filter: opacity(50%);
+}
+
+.mat-card {
+    background-color: rgba(0, 0, 0, 0.7); /* สีพื้นหลังโปร่งใส */
+}

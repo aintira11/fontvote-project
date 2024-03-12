@@ -1,0 +1,50 @@
+body {
+    background-color: rgba(41, 102, 183);
+    overflow-y: auto;
+}
+
+.circle-card {
+  width: 80%;
+  height: 13%;
+  margin: 2% auto; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(244, 246, 249,0.3);
+}
+
+  
+  
+  .circle-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .circle {
+    // width: 70px; 
+    // height: 70px; 
+    overflow: hidden;
+    border-radius: 50%; 
+    margin-right: 10px; 
+    margin-left: 3%;
+  }
+  
+  .circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-color: aliceblue;
+  }
+  
+  .name {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333; 
+  }
+  
+  .circle-container {
+    justify-content: flex-start;
+    width: 100%; 
+    
+  }

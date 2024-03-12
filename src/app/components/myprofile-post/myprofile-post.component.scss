@@ -1,0 +1,41 @@
+img{
+    width: 100%;
+    margin-right: 30px;
+}
+.zoom{
+  transition: transform 0.6s;
+  margin: 0 auto;
+  position: relative; 
+  z-index: 1;
+}
+.zoom:hover{
+    //   transform: scale(1.2); 
+// transform: rotateY(180deg);
+
+//   filter: opacity(50%);
+    filter: grayscale(1);
+    // transform: scale(1.4);
+    cursor: pointer;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px; /* ปรับความสูงตามที่ต้องการ */
+    margin-top: 25%;
+  }
+  
+  .box {
+    background-color: rgba(16, 146, 239, 0.744); /* สีพื้นหลัง */
+    width: 238px; /* กำหนดความกว้างของกล่อง */
+    height: 238px; /* กำหนดความสูงของกล่อง */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .box:hover{
+    filter: grayscale(1);
+    cursor: pointer;
+  }
+  

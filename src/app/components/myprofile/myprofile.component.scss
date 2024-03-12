@@ -1,0 +1,15 @@
+.row{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+hr{
+    color: #000;
+    border-style: solid; /* กำหนดเส้นเป็นแบบ solid */
+    border-width: 1px; /* กำหนดความหนาของเส้น */
+}
+body{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+

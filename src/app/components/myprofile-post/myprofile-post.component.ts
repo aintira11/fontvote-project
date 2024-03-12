@@ -25,6 +25,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 })
 export class MyprofilePostComponent implements OnInit{
 
+
   data: any;
   constants: ModelImage[] = []; // สร้างอาเรย์เพื่อเก็บข้อมูลรูปภาพ
   Array: any;
@@ -53,6 +54,20 @@ export class MyprofilePostComponent implements OnInit{
   EditPhoto(ImageID: number) {
     this.router.navigate(['/editphoto'], { state: { data: ImageID } });
   }
-  
+
+  delete(ImageID: number) {
+    if (window.confirm('Are you sure you want to delete this photo?')) {
+        const url = this.Constants.API_ENDPOINT+'/Delete/'+ImageID;
+        this.http.delete(url).subscribe(
+            () => {
+                console.log('ลบรูปภาพสำเร็จ');
+            },
+            error => {
+                console.error('เกิดข้อผิดพลาดในการลบรูปภาพ:', error);
+            }
+        );
+    }
+}
+
   
 }

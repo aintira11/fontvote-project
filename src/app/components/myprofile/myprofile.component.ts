@@ -26,7 +26,7 @@ export class MyprofileComponent {
 
 
   data: any;
-  photo: any;
+  photo: any[] = [];
   constructor(private Constants: Constants, private route: ActivatedRoute, private http: HttpClient,private router : Router,private location : Location) { }
   dataLogin: modelUser[] = [];
 

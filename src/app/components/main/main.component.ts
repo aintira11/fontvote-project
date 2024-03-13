@@ -115,7 +115,7 @@ export class MainComponent implements OnInit {
      // ใช้ HTTP GET เพื่อเรียกข้อมูล
      this.http.get(urlall).subscribe((rankpic: any) => {
     this.RankP = rankpic;
-    console.log(this.RankP); // แสดงฟังก์ชัน randomimage
+    console.log(this.RankP); 
     }); 
     
   }

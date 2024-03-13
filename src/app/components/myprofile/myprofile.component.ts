@@ -48,12 +48,6 @@ export class MyprofileComponent {
       this.router.navigate(['/myprofile/edit'], { state: { data: this.data[0] } });
       }
 
-    post() {
-      this.dataLogin = this.data as modelUser[];
-      // this.router.navigate(['/myprofile/post'], { queryParams: { data:JSON.stringify( this.data) } });
-      this.router.navigate(['/myprofile/edit'], { state: { data: this.dataLogin[0] } });
-  }
-
   edit(User_Id: any) {
     this.router.navigate(['/edit'], { state: { data: User_Id } });
     }
@@ -76,4 +70,10 @@ export class MyprofileComponent {
           console.log(this.Constants); // แสดงข้อมูลรูปภาพในคอนโซล
         });
       }
+
+      Statistics(User_Id: any) {
+        console.log(User_Id);
+        this.router.navigate(['/upload'], { state: { data: User_Id } });
+
+        }
 }

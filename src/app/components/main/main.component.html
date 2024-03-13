@@ -50,8 +50,8 @@
         <div *ngIf="randomPhoto" >
           <div style="background-color: rgba(255, 255, 255, 0.5); padding: 20px;width: 80%; margin: 0 auto;">
             <div style="display: flex; flex-direction: row; width: 100%; margin-top: 30px;margin-bottom: 20px;">
-                <div style="width: 50%; margin-top: 20px; "> 
-                    <img class="zoom" src="{{randomPhoto.photo1.Photo}}"  style="width: 40%; padding: 10px; background-color: rgba(0, 0, 0, 0.381); " (click)="Vote(randomPhoto.photo1.ImageID)">
+                <div style="width: 50%; margin-top: 20px; " > 
+                    <img class="zoom" src="{{randomPhoto.photo1.Photo}}"  style="width: 60%;height: 70%; object-fit: cover; padding: 10px; background-color: rgba(0, 0, 0, 0.381); " (click)="Vote(randomPhoto.photo1.ImageID)">
                     <h2> {{randomPhoto.photo1.Name_photo}}</h2>
                   </div>
         
@@ -60,7 +60,7 @@
                 </a>
         
                 <div style="width: 50%; margin-top: 20px; "> 
-                    <img class="zoom" src="{{randomPhoto.photo2.Photo}}"  style="width: 40%;  padding: 10px;  background-color: rgba(0, 0, 0, 0.381);"(click)="Vote(randomPhoto.photo2.ImageID)">
+                    <img class="zoom" src="{{randomPhoto.photo2.Photo}}"  style="width: 60%; height: 70%; object-fit: cover; padding: 10px;  background-color: rgba(0, 0, 0, 0.381);"(click)="Vote(randomPhoto.photo2.ImageID)">
                     <h2> {{randomPhoto.photo2.Name_photo}}</h2>
                   </div>
             </div>
@@ -90,7 +90,7 @@
                 <div style="display: flex; flex-direction: row; width: 100%; color: black;">
                   <h4 style="margin-top: 2px;">#{{i+1}}</h4>
                     <div style="width:10% ;">
-                        <img class=""filter src="'https://vote-projectadv.web.app{{r.Photo}}" style="width: 80px; border-radius: 50%;">
+                        <img class=""filter src="{{r.Photo}}" style="width: 80px; border-radius: 50%;">
                     </div>
                     <div style="width: 85%; ">
                         <h3 style="margin-top: 2px;"> {{r.Name_photo}}</h3>

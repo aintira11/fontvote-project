@@ -36,7 +36,7 @@ body::before {
 
 .zoom:hover {
 //   transform: scale(1.2); 
-// transform: rotateY(180deg);
+transform: rotateY(180deg);
 
   filter: opacity(50%);
 //   filter: grayscale(1);
@@ -56,3 +56,4 @@ body::before {
 .mat-card {
     background-color: rgba(0, 0, 0, 0.7); /* สีพื้นหลังโปร่งใส */
 }
+

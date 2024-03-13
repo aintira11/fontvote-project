@@ -17,3 +17,211 @@ body {
     border: 1px solid #ccc;
     border-radius: 3px;
   }
+
+  .example-card {
+    width: 50%;
+    margin: 0 auto; /* จัดการ์ดอยู่กึ่งกลางของหน้าจอ */
+    padding-left: 15px;
+    margin-top: 30px;
+    box-shadow: 0px 4px 8px rgba(0.5, 1, 1, 0.3);
+}
+.card{
+    border: 1px;
+    color: black;
+    width: 100%;
+    height: auto;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+h3{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.container {
+    height: 400px;
+    width: 400px;
+    border-radius: 10px;
+    box-shadow: 4px 4px 30px rgba(0, 0, 0, .2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    gap: 5px;
+    background-color: rgba(0, 110, 255, 0.041);
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .header {
+    flex: 1;
+    width: 100%;
+    border: 2px dashed royalblue;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  .header svg {
+    height: 100px;
+  }
+  
+  .header p {
+    text-align: center;
+    color: black;
+  }
+  
+  .footer {
+    background-color: rgba(0, 110, 255, 0.075);
+    width: 100%;
+    height: 40px;
+    padding: 8px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    color: black;
+    border: none;
+  }
+  
+  .footer svg {
+    height: 130%;
+    fill: royalblue;
+    background-color: rgba(70, 66, 66, 0.103);
+    border-radius: 50%;
+    padding: 2px;
+    cursor: pointer;
+    box-shadow: 0 2px 30px rgba(0, 0, 0, 0.205);
+  }
+  
+  .footer p {
+    flex: 1;
+    text-align: center;
+  }
+  
+//   #Photo {
+//     display: none;
+//   }
+
+
+  .input {
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
+    font-weight: 500;
+    font-size: .8vw;
+    color: #131313;
+    background-color: rgb(250, 250, 254);
+    box-shadow: 0 0 .4vw rgba(0,0,0,0.5), 0 0 0 .15vw transparent;
+    border-radius: 0.4vw;
+    border: none;
+    outline: none;
+    padding: 0.4vw;
+    max-width: 190px;
+    transition: .4s;
+    width: 500%;
+    transform: scale(1.2);
+    height: 7%;
+    margin-bottom: 5%;
+  }
+  
+  .input:hover {
+    box-shadow: 0 0 0 .15vw rgba(135, 207, 235, 0.186);
+  }
+  
+  .input:focus {
+    box-shadow: 0 0 0 .15vw skyblue;
+  }
+
+
+  button {
+    border: none;
+  }
+  
+  .c-button {
+    background: linear-gradient(140deg, rgba(75, 118, 200, 1) 0%, rgba(31, 70, 145, 1) 100%);
+    border-radius: 45px;
+    font-size: 25px;
+    text-align: left;
+    padding: 11px 0px 11px 0px;
+    border: 4px solid rgb(37, 37, 37) !important;
+    border-style: outset;
+    box-shadow: -6px -5px 18px rgba(255, 255, 255, 0.1);
+    transform: scale(0.7);
+    cursor: pointer;
+  }
+  
+  .c-button .c-main {
+    border-radius: 45px;
+    color: rgba(255, 255, 255, 1);
+    padding: 11px 25px 11px 2px;
+    box-shadow: inset 0px 0px 5px rgba(17, 17, 17, 0);
+    transition: all 0.5s ease-in-out;
+    border: 1px solid transparent;
+  }
+  
+  .c-ico .c-blur {
+    background: linear-gradient(318deg, rgba(75, 118, 200, 1) 0%, rgba(31, 70, 145, 1) 100%);
+    border-radius: 100%;
+    margin-left: 0;
+    padding: 8px 23px;
+    filter: blur(1px);
+    text-align: center;
+  }
+  
+  .c-ico {
+    position: relative;
+    margin-right: 20px;
+  }
+  
+  .c-ico .ico-text {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  /* Hovering */
+  
+  .c-button .c-main:hover {
+    box-shadow: inset 0px 0px 5px rgba(17, 17, 17, 0.6);
+    border: 1px solid rgba(26, 26, 26,0.5);
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .button {
+    display: flex;
+    height: 3em;
+    width: 100px;
+    align-items: center;
+    justify-content: center;
+    background-color: #eeeeee4b;
+    border-radius: 3px;
+    letter-spacing: 1px;
+    transition: all 0.2s linear;
+    cursor: pointer;
+    border: none;
+    background: #fff;
+   }
+   
+   .button > svg {
+    margin-right: 5px;
+    margin-left: 5px;
+    font-size: 20px;
+    transition: all 0.4s ease-in;
+   }
+   
+   .button:hover > svg {
+    font-size: 1.2em;
+    transform: translateX(-5px);
+   }
+   
+   .button:hover {
+    box-shadow: 9px 9px 33px #d1d1d1, -9px -9px 33px #252424;
+    transform: translateY(-2px);
+   }
+  

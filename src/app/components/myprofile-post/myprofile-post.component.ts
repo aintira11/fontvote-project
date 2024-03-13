@@ -56,18 +56,23 @@ export class MyprofilePostComponent implements OnInit{
   }
 
   delete(ImageID: number) {
-    if (window.confirm('Are you sure you want to delete this photo?')) {
-        const url = this.Constants.API_ENDPOINT+'/Delete/'+ImageID;
-        this.http.delete(url).subscribe(
-            () => {
-                console.log('ลบรูปภาพสำเร็จ');
-            },
-            error => {
-                console.error('เกิดข้อผิดพลาดในการลบรูปภาพ:', error);
-            }
-        );
+    console.log(ImageID);
+    const confirmed = window.confirm('Are you sure you want to delete this photo?');
+    if (confirmed) {
+      const url = this.Constants.API_ENDPOINT + '/Delete/' + ImageID;
+      this.http.delete(url).subscribe(
+        () => {
+          console.log('ลบรูปภาพสำเร็จ');
+          // รีโหลดหน้าหลังจากที่ลบรูปภาพเรียบร้อย
+          location.reload();
+        },
+        error => {
+          console.error('เกิดข้อผิดพลาดในการลบรูปภาพ:', error);
+        }
+      );
     }
-}
+  }
+  
 
   
 }

@@ -140,5 +140,11 @@ logout() {
         this.router.navigate(['/upload'], { state: { data: User_Id } });
         }
 
+        Statistics(User_Id: any) {
+          console.log("User ID :" , User_Id);
+          this.router.navigate(['/statistics'], { state: { data: User_Id } });
+  
+          }
+
 
 }

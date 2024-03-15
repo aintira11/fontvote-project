@@ -18,7 +18,7 @@
 
             <div *ngIf="data ; else kkkk" style="margin-left: 20px;">
               <button mat-button style="margin-right: 20px;" (click)="uploadPhoto(data.User_Id)">Upload</button>
-            <button mat-button style="margin-right: 20px;">statistics</button>
+            <button mat-button style="margin-right: 20px;" (click)="Statistics(data.User_Id)">statistics</button>
               <button mat-button (click)="logout()" >Log out</button>
             </div>
             <ng-template #kkkk style="margin-left: 20%;">

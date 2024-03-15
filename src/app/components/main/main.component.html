@@ -15,9 +15,10 @@
       
           <div style="display: flex; align-items: center;">
             <button mat-raised-button style="margin-right: 20px;">Home</button>
-            <button mat-button style="margin-right: 20px;">Ranking</button>
 
             <div *ngIf="data ; else kkkk" style="margin-left: 20px;">
+              <button mat-button style="margin-right: 20px;" (click)="uploadPhoto(data.User_Id)">Upload</button>
+            <button mat-button style="margin-right: 20px;">statistics</button>
               <button mat-button (click)="logout()" >Log out</button>
             </div>
             <ng-template #kkkk style="margin-left: 20%;">
@@ -76,7 +77,7 @@
     <div style="margin-left: 15%; margin-right: 15%; color: white; margin-top: 2%;">
         <div style="display: flex; flex-direction: row;">
             <h1 style="font-size: 50px;">I</h1>&nbsp;&nbsp;
-            <h1 style="margin-top: 4%;"> Ranking </h1>
+            <h1 style="margin-top: 4%;"> Rank </h1>
         </div>
         <div style="display: flex; flex-direction: row;margin-top: -3%;">
             <h3>Minecraft characters</h3>
@@ -88,16 +89,18 @@
         <mat-card style="margin-bottom: 5px;">
             <mat-card-content>
                 <div style="display: flex; flex-direction: row; width: 100%; color: black;">
-                  <h4 style="margin-top: 2px;">#{{i+1}}</h4>
+                  <div style="width: 10%;">
+                  <h4 style="margin-top: 2px; margin-right: 5px;">{{i+1}}</h4>
+                </div>
                     <div style="width:10% ;">
-                        <img class=""filter src="{{r.Photo}}" style="width: 80px; border-radius: 50%;">
+                        <img class=""filter src="{{r.image.Photo}}" style="width: 80px; border-radius: 50%;">
                     </div>
-                    <div style="width: 85%; ">
-                        <h3 style="margin-top: 2px;"> {{r.Name_photo}}</h3>
-                        <p style="margin-top: -10px;" (click)="WhoProfile(r.User_Id)" >BY : {{r.UserName}}</p >
+                    <div style="width: 70%; ">
+                        <h3 style="margin-top: 2px;"> {{r.image.Name_photo}}</h3>
+                        <p style="margin-top: -10px;" (click)="WhoProfile(r.User_Id)" >BY : {{r.image.UserName}}</p >
                     </div>
                     <div style="width:5% ;">
-                        <h3>{{r.Score}}</h3>
+                        <h3>{{r.image.Score}}</h3>
                     </div>
                 </div>
             </mat-card-content>

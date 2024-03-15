@@ -54,10 +54,12 @@ export class EdituploadComponent implements OnInit{
         Photo: ['']
       });
     });
-    this.print(this.data.ImageID);
+    this.print(this.data);
   }
 
   print(ImageID : any) {
+    console.log("ImageID :" , ImageID);
+    
     const url = this.Constants.API_ENDPOINT+'/DataPhoto/data/'+ ImageID;
     this.http.get(url).subscribe((response: any) => {
       this.Data = response; 

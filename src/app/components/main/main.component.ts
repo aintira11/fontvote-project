@@ -50,7 +50,6 @@ export class MainComponent implements OnInit {
         
     });
     console.log(this.data);
-    // console.log(this.data.Avatar);
     this.randomimage();
     this.Rank();
   }
@@ -114,7 +113,7 @@ export class MainComponent implements OnInit {
     const urlall = this.Constants.API_ENDPOINT+'/RankPhoto/get/allPhoto';
      // ใช้ HTTP GET เพื่อเรียกข้อมูล
      this.http.get(urlall).subscribe((rankpic: any) => {
-    this.RankP = rankpic;
+     this.RankP = rankpic;
     console.log(this.RankP); 
     }); 
     
@@ -123,7 +122,7 @@ export class MainComponent implements OnInit {
 
 logout() {
   this.data = [];
- this.router.navigate(['/login']);
+  this.router.navigate(['/login']);
   }
 
   profile() {
@@ -132,8 +131,14 @@ logout() {
     }
 
     WhoProfile(User_Id :HTMLInputElement ) {
+      console.log("User_Id : ",User_Id);
       this.router.navigate(['/profilePerson'], { state: { data: User_Id } });
       }
+
+      uploadPhoto(User_Id : number) {
+        console.log("User_Id : ",User_Id);
+        this.router.navigate(['/upload'], { state: { data: User_Id } });
+        }
 
 
 }

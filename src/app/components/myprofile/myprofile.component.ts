@@ -41,6 +41,7 @@ export class MyprofileComponent {
   }
   
   uploadPhoto(User_Id : number) {
+    console.log("User_Id : ",User_Id);
     this.router.navigate(['/upload'], { state: { data: User_Id } });
     }
 
@@ -72,8 +73,8 @@ export class MyprofileComponent {
       }
 
       Statistics(User_Id: any) {
-        console.log(User_Id);
-        this.router.navigate(['/upload'], { state: { data: User_Id } });
+        console.log("User ID :" , User_Id);
+        this.router.navigate(['/statistics'], { state: { data: User_Id } });
 
         }
 }

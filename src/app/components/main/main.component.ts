@@ -38,6 +38,7 @@ export class MainComponent implements OnInit {
   dataLogin:any[]=[];
   randomPhoto:any;
   RankP: any[]=[];
+  Rdif: any;
 
   constructor(private Constants: Constants, private route: ActivatedRoute, private http: HttpClient,private router : Router) { }
 
@@ -52,6 +53,7 @@ export class MainComponent implements OnInit {
     console.log(this.data);
     this.randomimage();
     this.Rank();
+    this.diff();
   }
 
 
@@ -114,7 +116,7 @@ export class MainComponent implements OnInit {
      // ใช้ HTTP GET เพื่อเรียกข้อมูล
      this.http.get(urlall).subscribe((rankpic: any) => {
      this.RankP = rankpic;
-    console.log(this.RankP); 
+    console.log("Rank :",this.RankP); 
     }); 
     
   }
@@ -146,5 +148,13 @@ logout() {
   
           }
 
+          diff(){
+            const urlall = this.Constants.API_ENDPOINT+'/rankDiff/get/diff';
+            
+            this.http.get(urlall).subscribe((rankdiff: any) => {
+            this.Rdif = rankdiff;
+           console.log("Rank Diff :",this.Rdif); 
+           }); 
+          }
 
 }

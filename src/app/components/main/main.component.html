@@ -53,7 +53,7 @@
           <div style="background-color: rgba(255, 255, 255, 0.5); padding: 20px;width: 80%; margin: 0 auto;">
             <div style="display: flex; flex-direction: row; width: 100%; margin-top: 30px;margin-bottom: 20px;">
                 <div style="width: 50%; margin-top: 20px; " > 
-                    <img class="zoom" src="{{randomPhoto.photo1.Photo}}"  style="width: 60%;height: 70%; object-fit: cover; padding: 10px; background-color: rgba(0, 0, 0, 0.381); " (click)="Vote(randomPhoto.photo1.ImageID)">
+                    <img class="zoom" src="{{randomPhoto.photo1.Photo}}"  style="width: 210px;height: 210px; object-fit: cover; padding: 10px; background-color: rgba(0, 0, 0, 0.381); " (click)="Vote(randomPhoto.photo1.ImageID)">
                     <h2> {{randomPhoto.photo1.Name_photo}}</h2>
                   </div>
         
@@ -62,7 +62,7 @@
                 </a>
         
                 <div style="width: 50%; margin-top: 20px; "> 
-                    <img class="zoom" src="{{randomPhoto.photo2.Photo}}"  style="width: 60%; height: 70%; object-fit: cover; padding: 10px;  background-color: rgba(0, 0, 0, 0.381);"(click)="Vote(randomPhoto.photo2.ImageID)">
+                    <img class="zoom" src="{{randomPhoto.photo2.Photo}}"  style="width: 210px; height: 210px; object-fit: cover; padding: 10px;  background-color: rgba(0, 0, 0, 0.381);"(click)="Vote(randomPhoto.photo2.ImageID)">
                     <h2> {{randomPhoto.photo2.Name_photo}}</h2>
                   </div>
             </div>
@@ -81,30 +81,42 @@
             <h3 style="margin-left: auto; margin-right: 40px;">score</h3>
         </div>        
         <div *ngIf="RankP">
-          <div *ngFor="let r of RankP ; let i = index">
-            <mat-card style="margin-bottom: 5px;" *ngFor="let r of RankP; let i = index">
-              <mat-card-content>
-                  <div style="display: flex; flex-direction: row; width: 100%; color: black;">
-                      <div style="width: 10%;">
+          <div *ngFor="let r of RankP; let i = index">
+              <mat-card style="margin-bottom: 5px;">
+                  <mat-card-content>
+                    
+                      <div style="display: flex; flex-direction: row; width: 100%; color: black;">
+                        <div style="width: 10%;">
                           <h4 style="margin-top: 2px; margin-right: 5px;">{{ i + 1 }}</h4>
-                          <p style="margin-top: -10px; color: gray;"> {{ Rdif[i].diff }}</p>
+                          <div *ngIf="Rdif[i].diff > 0" style="display: inline-block;">
+                              <p style="margin-top: -10px; color: green; display: inline;"> + {{ Rdif[i].diff }} &uarr;</p>
+                          </div>
+                          <div *ngIf="Rdif[i].diff < 0" style="display: inline-block;">
+                              <p style="margin-top: -10px; color: red; display: inline;">{{ Rdif[i].diff }} &darr;</p>
+                          </div>
+                          <div *ngIf="Rdif[i].diff == 0" style="display: inline-block;">
+                              <p style="margin-top: -10px; color: black; display: inline; font-weight: bolder ;">  = </p>
+                          </div>
+                          
                       </div>
-                      <div style="width: 10%;">
-                          <img class="filter" src="{{ r.image.Photo }}" style="width: 80px; border-radius: 50%;">
+                      
+                          <div style="width: 10%;">
+                              <img class="filter" src="{{ r.image.Photo }}" style="width: 80px;height: 80px; border-radius: 50%; object-fit: cover;">
+                          </div>
+                          <div style="width: 70%;">
+                              <h3 style="margin-top: 2px;">{{ r.image.Name_photo }}</h3>
+                              <p style="margin-top: -10px;" (click)="WhoProfile(r.User_Id)">BY: {{ r.image.UserName }}</p>
+                          </div>
+                          <div style="width: 5%;">
+                              <h3>{{ r.V_Score }}</h3>
+                          </div>
                       </div>
-                      <div style="width: 70%;">
-                          <h3 style="margin-top: 2px;">{{ r.image.Name_photo }}</h3>
-                          <p style="margin-top: -10px;" (click)="WhoProfile(r.User_Id)">BY : {{ r.image.UserName }}</p>
-                      </div>
-                      <div style="width: 5%;">
-                          <h3>{{ r.image.Score }}</h3>
-                      </div>
-                  </div>
-              </mat-card-content>
-          </mat-card>
-        </div>
+                  </mat-card-content>
+              </mat-card>
+          </div>
+      </div>
+      
       </div>
     </div>
-  </div>
 </body>
 </html>

@@ -9,14 +9,24 @@
     </button>
   </div>
   
-  
 
   <div *ngFor="let item of Data; let i = index" >
     <div style="display: flex; flex-direction: row; width: 90%; margin-left: 50px; margin-bottom: 50px;">
       <div >
         <img [src]="item.Photo" alt="image error" class="image" style="width: 200px; height: 200px; object-fit: cover; padding: 20px;">
-        <p> Image Name : {{item.Name_photo}}</p>
+        <p> Image Name : {{item.Name_photo}}  </p>
+
+        <div>
+          <p> Score : {{Rdif[i].V_Score}} </p>
+          <p> Rank : {{Rdif[i].rank_current}}
+              <span *ngIf="Rdif[i].diff > 0" style="color: green;  font-weight: bolder;">  &nbsp; + {{ Rdif[i].diff }} &uarr;</span>
+              <span *ngIf="Rdif[i].diff < 0" style="color: red;  font-weight: bolder;"> &nbsp;{{  Rdif[i].diff }} &darr;</span>
+              <span *ngIf="Rdif[i].diff == 0" style="color: black; font-weight: bolder;">&nbsp;  = </span>
+          </p>
       </div>
+
+      </div>
+      
       <div class="simple-bar-chart horizontal" style="width: 90%;">
         <div *ngFor="let vote of item.Votes" class="item" [style.--clr]="getRandomColor()" [style.--val]="vote.V_Score">
           

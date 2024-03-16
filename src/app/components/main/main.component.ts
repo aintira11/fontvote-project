@@ -108,6 +108,7 @@ export class MainComponent implements OnInit {
     console.log(url);
     this.randomimage();
     // location.reload();
+    alert('Vote Image Seccessfully');
 
   }
 
@@ -153,8 +154,8 @@ logout() {
             
             this.http.get(urlall).subscribe((rankdiff: any) => {
             this.Rdif = rankdiff;
-           console.log("Rank Diff :",this.Rdif); 
+           console.log("Rank Diff",this.Rdif); 
            }); 
           }
 
-}
+} 

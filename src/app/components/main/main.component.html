@@ -1,7 +1,6 @@
 
 <html >
 <head>
-    
 </head>
 <body >
     
@@ -44,14 +43,23 @@
         
       </mat-toolbar>
       
-    <div  > 
+    <div > 
     <div style="text-align: center; margin-left: 8%; margin-right: 8%;">
         <h2 style="font-family: monospace;font-size: 40px;">Welcome</h2>
         <h3 style="margin-bottom: 20px; font-family: monospace;font-size: 25px;">You can vote for your favorite Minecraft characters here. 📌</h3>
 
         <div *ngIf="randomPhoto" >
           <div style="background-color: rgba(255, 255, 255, 0.5); padding: 20px;width: 80%; margin: 0 auto;">
+
+            <label class="switch">
+              <input type="checkbox" class="toggle" [(ngModel)]="isSwitch" >
+              <span class="slider"></span>
+              <span class="card-side"></span>
+            </label>        
+            
+
             <div style="display: flex; flex-direction: row; width: 100%; margin-top: 30px;margin-bottom: 20px;">
+                
                 <div style="width: 50%; margin-top: 20px; " > 
                     <img class="zoom" src="{{randomPhoto.photo1.Photo}}"  style="width: 210px;height: 210px; object-fit: cover; padding: 10px; background-color: rgba(0, 0, 0, 0.381); " (click)="Vote(randomPhoto.photo1.ImageID)">
                     <h2> {{randomPhoto.photo1.Name_photo}}</h2>
@@ -68,9 +76,26 @@
             </div>
         </div>
     </div>
-
     </div>
    
+        <!-- Modal -->
+        <div *ngIf="isModelOpen" class="modal">
+          <div class="modal-content">
+            <span class="close" (click)="closeModel()">&times;</span>
+            <p>Calculate Score (Elo Algorithm)</p>
+            <hr>
+            <h4>สูตร <br>&nbsp; &nbsp; Ea = 1 / 1 + 10 ^ (Rb - Ra)/400 <br> Eb = 1 / 1 + 10 ^ (Ra - Rb)/400 </h4>
+            <p>จากสูตร เมื่อแทนค่า Rating ของทั้ง a และ  b จะได้ดังนี้ <br> Ea(winner) = 1 / 1 + 10 ^ ( {{apiData.OleScore1}} - {{apiData.OleScore2}} ) / 400 = {{apiData.Ea}}  <br> Eb(loser) = 1 / 1 + 10 ^ ( {{apiData.OleScore2}} - {{apiData.OleScore1}} ) / 400 = {{apiData.Eb}}</p>
+            <br>
+            <h4>New Score </h4>
+            <h4>สูตร <br>&nbsp; &nbsp; Ra = Ra + k ( Sa - Ea ) <br> Rb = Rb + k ( Sb - Eb )</h4>
+            <p>Ra(winner) = {{apiData.OleScore1}} + 32 ( 1 - {{apiData.Ea}}) = {{apiData.Rpa}} (New score winner) </p>
+            <p>Rb(loser) = {{apiData.OleScore2}} + 32 ( 0 - {{apiData.Eb}}) = {{apiData.Rpb}}  (New score loser) </p>
+          </div> 
+        </div>
+
+
+    <!-- rank  -->
     <div style="margin-left: 15%; margin-right: 15%; color: white; margin-top: 2%;">
         <div style="display: flex; flex-direction: row;">
             <h1 style="font-size: 50px;">I</h1>&nbsp;&nbsp;

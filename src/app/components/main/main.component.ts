@@ -13,6 +13,7 @@ import { ModelImage } from '../../model/models';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
@@ -24,13 +25,13 @@ import { CommonModule } from '@angular/common';
             MatCardModule,
             RouterModule,
             HttpClientModule,
-            CommonModule
+            CommonModule,
+            FormsModule 
           ],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss'
 })
 export class MainComponent implements OnInit {
-
 
   constants :ModelImage []=[];
   data: any;
@@ -39,6 +40,14 @@ export class MainComponent implements OnInit {
   randomPhoto:any;
   RankP: any[]=[];
   Rdif: any;
+
+  Ra: any;
+  Rb: any;
+  Ea: any;
+  Eb: any;
+  score1: any;
+  score2: any;
+  apiData: any;
 
   constructor(private Constants: Constants, private route: ActivatedRoute, private http: HttpClient,private router : Router) { }
 
@@ -73,6 +82,50 @@ export class MainComponent implements OnInit {
     });
   }
 
+  // Vote(ImageID: HTMLInputElement) {
+  //   const ImageID1 = this.randomPhoto.photo1.ImageID;
+  //   const ImageID2 = this.randomPhoto.photo2.ImageID;
+
+  //   let Score1: number;
+  //   let Score2: number;
+
+  //   // กำหนดค่า Score1 และ Score2 ตามการโหวต
+  //   //ถ้า รูปที่ถูกโหวต == 
+  //   if(ImageID === this.randomPhoto.photo1.ImageID){
+  //     Score1 = 1;
+  //     Score2 = 0;
+  //   }else {
+  //     Score1 = 0;
+  //     Score2 = 1;
+  //   }
+  // const Data ={
+  //   ImageID1:ImageID1,
+  //   ImageID2:ImageID2,
+  //   Score1:Score1,
+  //   Score2:Score2
+  // };
+  //   const  url = this.Constants.API_ENDPOINT+`/elo/vote`;
+  //   this.http.post(url,Data).subscribe({
+  //       next : (res) =>{
+  //         console.log(res);
+  //       },
+  //       error : (err) =>{
+  //         console.error('error jaa',err);
+          
+  //       }
+  //   });
+  //   console.log(url);
+  //   console.log("Data", Data );
+  //   this.randomimage();
+  //   // location.reload();
+  //   alert('Vote Image Seccessfully');
+
+  // }
+
+  // สร้างตัวแปรสถานะเริ่มต้นโมเดลเป็นปิด
+  isModelOpen: boolean = false;
+  isSwitch :boolean = true;
+
   Vote(ImageID: HTMLInputElement) {
     const ImageID1 = this.randomPhoto.photo1.ImageID;
     const ImageID2 = this.randomPhoto.photo2.ImageID;
@@ -81,36 +134,54 @@ export class MainComponent implements OnInit {
     let Score2: number;
 
     // กำหนดค่า Score1 และ Score2 ตามการโหวต
-    //ถ้า รูปที่ถูกโหวต == 
-    if(ImageID === this.randomPhoto.photo1.ImageID){
+    if (ImageID === this.randomPhoto.photo1.ImageID) {
       Score1 = 1;
       Score2 = 0;
-    }else {
+    } else {
       Score1 = 0;
       Score2 = 1;
     }
-  const Data ={
-    ImageID1:ImageID1,
-    ImageID2:ImageID2,
-    Score1:Score1,
-    Score2:Score2
-  };
-    const  url = this.Constants.API_ENDPOINT+`/elo/vote`;
-    this.http.post(url,Data).subscribe({
-        next : (res) =>{
-          console.log(res);
+
+    const Data = {
+      ImageID1: ImageID1,
+      ImageID2: ImageID2,
+      Score1: Score1,
+      Score2: Score2
+    };
+
+    const url = this.Constants.API_ENDPOINT + '/elo/vote';
+    this.http.post(url, Data).subscribe({
+        next: (res) => {
+          // console.log(res);
+          this.apiData = res;     
+          // ต่อไปคุณสามารถใช้ this.apiData ในการดำเนินการต่อได้
+          console.log(this.apiData);
         },
-        error : (err) =>{
-          console.error('error jaa',err);
-          
+        error: (err) => {
+          console.error('error jaa', err);
         }
     });
-    console.log(url);
+    
+     // alert('Vote Image Successfully');
+  if (this.isSwitch) {
+    this.openModel();
+  } else{
     this.randomimage();
-    // location.reload();
-    alert('Vote Image Seccessfully');
-
   }
+
+}
+
+openModel() {
+  // เปลี่ยนสถานะเป็นเปิดเพื่อให้โมเดลแสดง
+  this.isModelOpen = true;
+}
+
+closeModel() {
+  // เปลี่ยนสถานะเป็นปิดเพื่อปิดโมเดล
+  this.isModelOpen = false;
+  this.randomimage();
+}
+
 
   Rank() {
     const urlall = this.Constants.API_ENDPOINT+'/RankPhoto/get/allPhoto';
@@ -159,3 +230,4 @@ logout() {
           }
 
 } 
+

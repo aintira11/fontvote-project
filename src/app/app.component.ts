@@ -17,4 +17,5 @@ import { MainComponent } from './components/main/main.component';
 })
 export class AppComponent {
   title = 'Project-vote';
+  // title = 'MineCraft-Math ';
 }

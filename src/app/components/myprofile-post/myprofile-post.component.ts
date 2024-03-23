@@ -1,14 +1,11 @@
 import { Component ,OnInit} from '@angular/core';
 import { Constants } from '../../config/constants';
-import { modelUser } from '../../model/models';
 import { ModelImage } from '../../model/models';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
 
 @Component({

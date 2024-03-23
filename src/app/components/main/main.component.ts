@@ -14,6 +14,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -48,6 +49,8 @@ export class MainComponent implements OnInit {
   score1: any;
   score2: any;
   apiData: any;
+  
+  isLoading: boolean = false;
 
   constructor(private Constants: Constants, private route: ActivatedRoute, private http: HttpClient,private router : Router) { }
 
@@ -82,51 +85,15 @@ export class MainComponent implements OnInit {
     });
   }
 
-  // Vote(ImageID: HTMLInputElement) {
-  //   const ImageID1 = this.randomPhoto.photo1.ImageID;
-  //   const ImageID2 = this.randomPhoto.photo2.ImageID;
-
-  //   let Score1: number;
-  //   let Score2: number;
-
-  //   // กำหนดค่า Score1 และ Score2 ตามการโหวต
-  //   //ถ้า รูปที่ถูกโหวต == 
-  //   if(ImageID === this.randomPhoto.photo1.ImageID){
-  //     Score1 = 1;
-  //     Score2 = 0;
-  //   }else {
-  //     Score1 = 0;
-  //     Score2 = 1;
-  //   }
-  // const Data ={
-  //   ImageID1:ImageID1,
-  //   ImageID2:ImageID2,
-  //   Score1:Score1,
-  //   Score2:Score2
-  // };
-  //   const  url = this.Constants.API_ENDPOINT+`/elo/vote`;
-  //   this.http.post(url,Data).subscribe({
-  //       next : (res) =>{
-  //         console.log(res);
-  //       },
-  //       error : (err) =>{
-  //         console.error('error jaa',err);
-          
-  //       }
-  //   });
-  //   console.log(url);
-  //   console.log("Data", Data );
-  //   this.randomimage();
-  //   // location.reload();
-  //   alert('Vote Image Seccessfully');
-
-  // }
+  delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 
   // สร้างตัวแปรสถานะเริ่มต้นโมเดลเป็นปิด
   isModelOpen: boolean = false;
   isSwitch :boolean = true;
 
-  Vote(ImageID: HTMLInputElement) {
+  async Vote(ImageID: HTMLInputElement) {
     const ImageID1 = this.randomPhoto.photo1.ImageID;
     const ImageID2 = this.randomPhoto.photo2.ImageID;
 
@@ -154,19 +121,28 @@ export class MainComponent implements OnInit {
         next: (res) => {
           // console.log(res);
           this.apiData = res;     
-          // ต่อไปคุณสามารถใช้ this.apiData ในการดำเนินการต่อได้
           console.log(this.apiData);
         },
         error: (err) => {
           console.error('error jaa', err);
         }
+        // ,
+        // complete: () => {
+        //   this.isLoading = false;
+        // }
     });
+
+  
+
     
-     // alert('Vote Image Successfully');
   if (this.isSwitch) {
     this.openModel();
   } else{
     this.randomimage();
+      this.isLoading = true;
+      await this.delay(2000); // รอเวลา 5 วินาที
+      this.isLoading = false;
+    
   }
 
 }
@@ -176,10 +152,14 @@ openModel() {
   this.isModelOpen = true;
 }
 
-closeModel() {
+  async closeModel() {
   // เปลี่ยนสถานะเป็นปิดเพื่อปิดโมเดล
   this.isModelOpen = false;
-  this.randomimage();
+   this.randomimage();
+      this.isLoading = true;
+      await this.delay(2000); // รอเวลา 5 วินาที
+      this.isLoading = false;
+ 
 }
 
 

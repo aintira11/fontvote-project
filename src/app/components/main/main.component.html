@@ -17,17 +17,17 @@
             <button mat-button style="margin-right: 20px;">Rank</button>
 
             <div *ngIf="data ; else kkkk" style="margin-left: 20px;">
-              <button mat-button style="margin-right: 20px;" (click)="uploadPhoto(data.User_Id)">Upload</button>
+              <!-- <button mat-button style="margin-right: 20px;" (click)="uploadPhoto(data.User_Id)">Upload</button> -->
             <button mat-button style="margin-right: 20px;" (click)="Statistics(data.User_Id)">statistics</button>
               <button mat-button (click)="logout()" >Log out</button>
             </div>
             <ng-template #kkkk style="margin-left: 20%;">
-                <!-- <div *ngIf="this.data.length == 0 "> -->
+               
               <button mat-button routerLink="/login">Log in</button>
               <button mat-button style="border-radius: 50px;">
-                <img src="/assets/photo/UserImage.png" style="width: 30px;margin-top: 8px;" >
+                <img src="/assets/photo/UserImage.png" style="width: 40px;height: 40px; border-radius: 50px; margin-top: 8px; object-fit: cover;" >
               </button>
-            <!-- </div> -->
+           
             </ng-template>
           </div>
       
@@ -35,19 +35,64 @@
             <div style="display: flex; align-items: center;">
             <h3>{{ data.Name }}</h3>
             <button mat-button style="border-radius: 50px; ">
-              <img src="{{data.Avatar}}" style="width: 30px; border-radius: 50%;transform: scale(1.5);" (click)="profile()">
+              <img src="{{data.Avatar}}" style="width: 50px;height: 50px; border-radius: 50px; margin-top: 8px; object-fit: cover;" (click)="profile()">
             </button>
         </div>
           </div>
         </div>
         
       </mat-toolbar>
-      
     <div > 
+
+
+      
+   
     <div style="text-align: center; margin-left: 8%; margin-right: 8%;">
         <h2 style="font-family: monospace;font-size: 40px;">Welcome</h2>
         <h3 style="margin-bottom: 20px; font-family: monospace;font-size: 25px;">You can vote for your favorite Minecraft characters here. 📌</h3>
 
+
+        <div *ngIf="isLoading; else content" style="margin-top: 10%;">
+          <!-- แสดง Loading Spinner หรือข้อความ Loading ตามต้องการ -->
+          <div class="container">
+            <div class="tree">
+              <div class="branch" style="--x:0">
+                <span style="--i:0;"></span>
+                <span style="--i:1;"></span>
+                <span style="--i:2;"></span>
+                <span style="--i:3;"></span>
+              </div>
+              <div class="branch" style="--x:1">
+                <span style="--i:0;"></span>
+                <span style="--i:1;"></span>
+                <span style="--i:2;"></span>
+                <span style="--i:3;"></span>
+              </div>
+              <div class="branch" style="--x:2">
+                <span style="--i:0;"></span>
+                <span style="--i:1;"></span>
+                <span style="--i:2;"></span>
+                <span style="--i:3;"></span>
+              </div>
+              <div class="branch" style="--x:3">
+                <span style="--i:0;"></span>
+                <span style="--i:1;"></span>
+                <span style="--i:2;"></span>
+                <span style="--i:3;"></span>
+              </div>
+              <div class="stem">
+                <span style="--i:0;"></span>
+                <span style="--i:1;"></span>
+                <span style="--i:2;"></span>
+                <span style="--i:3;"></span>
+              </div>
+              <span class="shadow"></span>
+            </div>
+          </div>
+        </div>
+
+
+        <ng-template #content>
         <div *ngIf="randomPhoto" >
           <div style="background-color: rgba(255, 255, 255, 0.5); padding: 20px;width: 80%; margin: 0 auto;">
 
@@ -55,7 +100,8 @@
               <input type="checkbox" class="toggle" [(ngModel)]="isSwitch" >
               <span class="slider"></span>
               <span class="card-side"></span>
-            </label>        
+            </label>
+                    
             
 
             <div style="display: flex; flex-direction: row; width: 100%; margin-top: 30px;margin-bottom: 20px;">
@@ -76,21 +122,25 @@
             </div>
         </div>
     </div>
-    </div>
-   
+  </ng-template>
+</div>
+
+    
         <!-- Modal -->
         <div *ngIf="isModelOpen" class="modal">
           <div class="modal-content">
             <span class="close" (click)="closeModel()">&times;</span>
-            <p>Calculate Score (Elo Algorithm)</p>
+            <h3>Calculate Score (Elo Algorithm)</h3>
             <hr>
-            <h4>สูตร <br>&nbsp; &nbsp; Ea = 1 / 1 + 10 ^ (Rb - Ra)/400 <br> Eb = 1 / 1 + 10 ^ (Ra - Rb)/400 </h4>
-            <p>จากสูตร เมื่อแทนค่า Rating ของทั้ง a และ  b จะได้ดังนี้ <br> Ea(winner) = 1 / 1 + 10 ^ ( {{apiData.OleScore1}} - {{apiData.OleScore2}} ) / 400 = {{apiData.Ea}}  <br> Eb(loser) = 1 / 1 + 10 ^ ( {{apiData.OleScore2}} - {{apiData.OleScore1}} ) / 400 = {{apiData.Eb}}</p>
-            <br>
+            <h4>สูตร <br>&nbsp; &nbsp; Ea = 1 / 1 + 10 ^ (Rb - Ra)/400 <br>&nbsp; &nbsp;Eb = 1 / 1 + 10 ^ (Ra - Rb)/400 </h4>
+            <p>จากสูตร เมื่อแทนค่า Rating ของทั้ง a และ  b จะได้ดังนี้ <br> </p>
+            <p>Ea({{randomPhoto.photo1.Name_photo}}) = 1 / 1 + 10 ^ ( {{apiData.OleScore2}} - {{apiData.OleScore1}} ) / 400 = {{apiData.Ea}}</p>
+            <p>Eb({{randomPhoto.photo2.Name_photo}}) = 1 / 1 + 10 ^ ( {{apiData.OleScore1}} - {{apiData.OleScore2}} ) / 400 = {{apiData.Eb}}</p>
+
             <h4>New Score </h4>
-            <h4>สูตร <br>&nbsp; &nbsp; Ra = Ra + k ( Sa - Ea ) <br> Rb = Rb + k ( Sb - Eb )</h4>
-            <p>Ra(winner) = {{apiData.OleScore1}} + 32 ( 1 - {{apiData.Ea}}) = {{apiData.Rpa}} (New score winner) </p>
-            <p>Rb(loser) = {{apiData.OleScore2}} + 32 ( 0 - {{apiData.Eb}}) = {{apiData.Rpb}}  (New score loser) </p>
+            <h4>สูตร <br>&nbsp; &nbsp; Ra = Ra + k ( Sa - Ea ) <br>&nbsp; &nbsp; Rb = Rb + k ( Sb - Eb )</h4>
+            <p>Ra({{randomPhoto.photo1.Name_photo}}) = {{apiData.OleScore1}} + 32 ( {{apiData.Score1}} - {{apiData.Ea}}) = {{apiData.Rpa}} &nbsp; &nbsp;(New score ) </p>
+            <p>Rb({{randomPhoto.photo2.Name_photo}}) = {{apiData.OleScore2}} + 32 ( {{apiData.Score2}} - {{apiData.Eb}}) = {{apiData.Rpb}}  &nbsp; &nbsp;(New score ) </p>
           </div> 
         </div>
 
@@ -143,5 +193,9 @@
       
       </div>
     </div>
+
+
+
+   
 </body>
 </html>

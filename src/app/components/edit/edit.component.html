@@ -1,5 +1,5 @@
 <body>
-  <mat-toolbar style="background-color: rgb(45, 147, 231); display: flex; justify-content: space-between; align-items: center;">
+  <!-- <mat-toolbar style="background-color: rgb(45, 147, 231); display: flex; justify-content: space-between; align-items: center;">
       <div class="header" style="display: flex; align-items: center;">
           <img src="/assets/photo/mine2.png" style="margin-right: 10px; width: 50px; height: 50px;">
           <h1 class="title" style="color: aliceblue;">Battle Craft</h1>
@@ -10,9 +10,60 @@
         <img src="/assets/photo/mine4.png" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
       </div>
     </div>
-  </mat-toolbar>
+  </mat-toolbar> -->
 
-  <div class="login-container">
+
+<div style="margin-left: 10px; margin-right: 10px;" class="container ">
+  <h2 style="font-family: monospace;transform: scale(1.5);">Edit your profile</h2>
+  <form style="width: 100%; margin-left: 10px;display: flex;flex-direction: row;width: 100%;margin-top: -80px;" class="form">
+    <!-- file -->
+    <div style="width: 100%;margin-top: 75px;margin-left: -120px;" >
+      <!-- <label class="file-upload-label">
+        <div class="file-upload-design" > -->
+          <!-- image  -->
+
+            <img src="{{ imageUrl || Data_User[0].Avatar }}" alt="your Image" style="width: 50%; margin-left: 35%;border-radius: 20px;" >
+            
+          <!-- <span class="browse-button">Browse file here !! <input type="file" id="Avatar"  name="Avatar" accept="image/*" [(ngModel)]="Avatar" (change)="FileSelected($event)">
+          </span>-->
+        </div> 
+        <!-- <input type="file" id="Avatar"  name="Avatar" accept="image/*" [(ngModel)]="Avatar" (change)="FileSelected($event)"> -->
+      <!-- </label>
+    </div> -->
+
+    <!-- เนื้อหาฝั่งขวา: ฟอร์ม -->
+    <div style="width: 100%;">
+  
+      <label for="Username" class="label">Username</label>
+      <input type="text" value="{{Data_User[0].UserName}}" placeholder="{{Data_User[0].UserName}}" id="UserName" name="UserName" required="Please enter information" class="input" [(ngModel)]="UserName">
+      <label for="Name" class="label">Name</label>
+      <input type="text" value="{{Data_User[0].Name}}" placeholder="{{Data_User[0].Name}}" id="Name" name="Name" required="Please enter information" class="input" [(ngModel)]="Name">
+      <label for="Email" class="label">Email</label>
+      <input type="Email" value="{{Data_User[0].Email}}" placeholder="{{Data_User[0].Email}}" id="Email" name="Email" required="Please enter information" class="input" [(ngModel)]="Email">
+      <label for="Avatar" class="label">Choose Image </label><br><br>
+      <label for="file" class="button upload-btn">Choose File here !!
+        <!-- <input hidden="" type="file" id="file" id="Photo"  name="Photo" accept="image/*" [(ngModel)]="Photo"> -->
+        <input type="file" id="Avatar"  name="Avatar" accept="image/*" [(ngModel)]="Avatar" (change)="FileSelected($event)">
+      </label>
+      <!-- คำเตือน -->
+      <h1 style="color: red; margin-right: 155%;">*</h1>
+      <label for="Password" class="label">ConfirmPassword</label>
+      <input type="Password" id="Password" name="Password" required="Please enter information" class="input" [(ngModel)]="Password">
+      <!-- ปุ่ม -->
+      <div style="display: flex; justify-content: space-between; width: 100%;">
+        <div>
+          <button mat-raised-button color="warn" (click)="back()">Cancel</button>
+        </div>
+        <div>
+          <button mat-raised-button color="primary" (click)="frofile(Data_User[0].User_Id)">Save</button>
+        </div>
+      </div>
+      
+    </div>
+  </form>
+</div>
+
+  <!-- <div class="login-container">
       <div style="display: flex; align-items: center;">
       <mat-icon class="edit-icon" style="margin-left: -20%;">edit_square</mat-icon>
       <h2 >Edit your profile</h2>
@@ -21,7 +72,7 @@
       <div style="display: flex; align-items: center; margin-right: 420%;margin-top: 15%;">
           <label for="profilePhoto">Photo:</label>
           <input type="file" id="profilePhoto" accept="image/*" style="display: none;">
-          <!-- <button mat-raised-button color="primary" (click)="openFileDialog()">Choose Photo</button> -->
+           <button mat-raised-button color="primary" (click)="openFileDialog()">Choose Photo</button> 
       </div>
 
           <div style="position: relative;">
@@ -32,7 +83,7 @@
   
       <div style="position: relative;">
           <mat-icon class="material-icons" style="position: absolute; top: 50%; transform: translateY(-50%); margin-left: 1%;">person</mat-icon>
-          <input matInput type="text" placeholder="First-last name:" style="padding-left: 30px;  margin-top: 10px;">
+          <input matInput type="text" placeholder="Name:" style="padding-left: 30px;  margin-top: 10px;">
       </div>
   
       <div style="position: relative;">
@@ -49,6 +100,6 @@
   <div class="example-button-row" style="margin-left: 80%;margin-top: 5%;">
       <button mat-raised-button style="margin-right: 10%;" >Cancel</button>
       <button mat-raised-button>Save</button>
-  </div>
+  </div> -->
 
 </body>

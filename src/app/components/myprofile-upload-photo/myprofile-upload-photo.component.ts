@@ -31,7 +31,7 @@ export class MyprofileUploadPhotoComponent {
     Data: any;
     imageForm!: FormGroup;
     User_Id: any;
-    Name_photo: string = '';
+    Name_photo: string = ''; 
     Photo: File | undefined;
   
     constructor(
@@ -53,6 +53,19 @@ export class MyprofileUploadPhotoComponent {
         });
       });
     }
+
+    imageUrl: string | null = null;
+    //แสดงรูปที่เลือก
+    FileSelected(event: any) {
+      const file = event.target.files[0];
+      console.log(file); // ตรวจสอบไฟล์ที่ได้รับ
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+          console.log(e.target.result); // ตรวจสอบข้อมูล URL ของรูปภาพ
+          this.imageUrl = e.target.result;
+      };
+      reader.readAsDataURL(file);
+  }
   
     onFileSelected(event: any): void {
       const file = (event.target as HTMLInputElement).files?.item(0);
@@ -64,6 +77,12 @@ export class MyprofileUploadPhotoComponent {
     }
   
     upload() {
+
+      if (!this.Name_photo) {
+        alert('Please enter the photo name.'); // แสดงแจ้งเตือนถ้าชื่อรูปภาพไม่ถูกกรอก
+        return; // หยุดการดำเนินการต่อไป
+    }
+    
       const fileInput = document.getElementById('Photo') as HTMLInputElement;
       if (!fileInput || !fileInput.files || fileInput.files.length === 0) {
         alert('Please select an image file');
@@ -92,7 +111,7 @@ export class MyprofileUploadPhotoComponent {
     }
 
     back() {
-        const url = this.Constants.API_ENDPOINT + '/login/read/Id?User_Id=' + this.data;
+        const url = this.Constants.API_ENDPOINT + '/getdata/read/' + this.data;
         this.http.get(url).subscribe((dataPerson: any) => {
           this.Data = dataPerson;
           console.log(this.Data);

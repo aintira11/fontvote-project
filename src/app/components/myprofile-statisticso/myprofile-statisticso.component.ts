@@ -69,7 +69,7 @@ export class MyprofileStatisticsoComponent {
   }
 
   back() {
-    const url = this.Constants.API_ENDPOINT + '/login/read/Id?User_Id=' + this.data;
+    const url = this.Constants.API_ENDPOINT + '/getdata/read/' + this.data;
     this.http.get(url).subscribe((dataPerson: any) => {
       this.databack = dataPerson;
       console.log(this.databack);

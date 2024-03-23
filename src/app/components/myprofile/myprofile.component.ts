@@ -36,7 +36,7 @@ export class MyprofileComponent {
       // this.printdata();
         
     });
-    console.log(this.data);
+    console.log("data frofile  :" ,this.data);
     this.myphoto(this.data.User_Id);
   }
   

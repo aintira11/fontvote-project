@@ -1,3 +1,15 @@
+<div *ngIf="isLoading; else content" style="position: absolute;top: 80%;left: 48%;transform: translate(-50%,-50%);">
+    <div class="loading">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</div>
+
+
+<ng-template #content>
 <div *ngIf="constants" >
     <h3>{{constants.length}} / 5 </h3>
     <div style="display: flex; flex-wrap: wrap; ">
@@ -18,7 +30,41 @@
     </div>
     </div>
 
+    <!-- Modal -->
+        <div *ngIf="isModelOpen" class="cont">
+         <div *ngIf="Data_image" style=" position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);" >
+            <form class="modal">
+                <span class="close" (click)="closeModel()">X</span>
+                    <div class="content">
+                      <span class="title">Edit your image</span>
+                      <p class="message">Select a file to upload from your computer or device.</p>
+                      <!-- <input type="hidden" id="" name="User_Id" [(ngModel)]="data.User_Id"> -->
+                      <!-- input name -->
+                        <p class="input-container"  style="display: flex; align-items: center;">  
+                                <label for="text" style="margin-right: 2px;width: 50%;">Name photo :</label>
+                                <input type="text" placeholder="{{Data_image[0].Name_photo}}" name="text" id="Name_photo" name="Name_photo" [(ngModel)]="Name_photo" class="input-field" autocomplete="name" >
+                            
+                         </p>
+
+                        <!-- <img src="{{Data_image[0].Photo}}" alt="your Image" style="width: 50%; margin-left: 25%;" > -->
+                        <img src="{{ imageUrl || Data_image[0].Photo }}" alt="your Image" style="width: 50%; margin-left: 25%;border-radius: 20px;" >
+                      <div class="actions">
+                        <label for="file" class="button upload-btn">Choose File here !!
+                          <!-- <input hidden="" type="file" id="file" id="Photo"  name="Photo" accept="image/*" [(ngModel)]="Photo"> -->
+                          <input type="file" id="Photo"  name="Photo" accept="image/*" [(ngModel)]="Photo" (change)="FileSelected($event)">
+                        </label>
+                      </div>
+                      <div class="result">
+                        <button mat-stroked-button color="primary" style="margin-left: 40%;"  type="button" (click)="Edit(Data_image[0].ImageID)">Save</button>
+                      </div>
+                </div>
+              </form>
+        </div>
+    </div>
+
 </div>
+
+</ng-template>
   
   
   

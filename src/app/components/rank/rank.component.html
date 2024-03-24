@@ -1,0 +1,175 @@
+<body>
+
+    <mat-toolbar style="height: 10%; background-color: rgba(255, 255, 255, 0.5);">
+
+        <div  style="display: flex; justify-content: space-between; align-items: center; width: 100%; ">
+          <div style="display: flex; align-items: center;margin-top: -20px;">
+            <img src="/assets/photo/minecraft-wisp-512x512.png" style="width: 8%; margin-left: 50px; margin-top: 20px;">
+            <h5 style="margin-top: 3%;margin-right:20px ;">Battle Craft</h5>
+          </div>
+      
+          <div style="display: flex; align-items: center;">
+            <button mat-button style="margin-right: 20px;" (click)="Home()">Home</button>
+              <button  mat-raised-button style="margin-right: 20px;" >Rank</button>
+              <button mat-button style="margin-right: 20px;" (click)="Statistics(data.User_Id)">statistics</button>
+              <button mat-button (click)="logout()" >Log out</button>
+    
+          </div>
+      
+          <div *ngIf="data" style="margin-right:50px ;">
+            <div style="display: flex; align-items: center;">
+            <h3>{{ data.Name }}</h3>
+            <button mat-button style="border-radius: 50px; ">
+              <img src="{{data.Avatar}}" style="width: 50px;height: 50px; border-radius: 50px; margin-top: 8px; object-fit: cover;" (click)="profile()">
+            </button>
+        </div>
+          </div>
+        </div>
+        
+      </mat-toolbar>
+    <!-- rank  -->
+    <div style="margin-left: 15%; margin-right: 15%; color: white; margin-top: 2%;">
+
+        <div class="scene" (click)="scrollToRank()">
+            <div class="cube">
+              <span class="side top">Rank</span>
+              <span class="side front">Top 10</span>
+            </div>
+          </div>
+
+        <div style="display: flex; flex-direction: row;">
+            <h1 style="font-size: 50px;">I</h1>&nbsp;&nbsp;
+            <h1 style="margin-top: 4%;"> Top 10 Today</h1>
+        </div>
+        <div style="display: flex; flex-direction: row;margin-top: -3%;">
+            <h3>Minecraft characters</h3>
+            <h3 style="margin-left: auto; margin-right: 80px;">score</h3>
+        </div>        
+        <div *ngIf="RankP">
+          <div *ngFor="let r of RankP; let i = index">
+              <mat-card style="margin-bottom: 5px;">
+                  <mat-card-content>
+                    
+                      <div style="display: flex; flex-direction: row; width: 100%; color: black;">
+                        <div style="width: 10%;">
+                            <div style="display: flex; flex-direction: row;">
+                          <h4 style="margin-top: 2px; margin-right: 5px;" >{{ i + 1 }}</h4>
+                          <img src="/assets/photo/medal.png" alt="" *ngIf="i < 3" style="width: 20%;height: 20%;">
+                          <!-- <mat-icon class="material-symbols-outlined" style="color: yellow;" *ngIf="i < 3">
+                            military_tech
+                            </mat-icon> -->
+                           
+                        </div>
+                          <div *ngIf="Rdif[i].diff > 0" style="display: inline-block;">
+                              <p style="margin-top: -10px; color: green; display: inline;"> + {{ Rdif[i].diff }} &uarr;</p>
+                          </div>
+                          <div *ngIf="Rdif[i].diff < 0" style="display: inline-block;">
+                              <p style="margin-top: -10px; color: red; display: inline;">{{ Rdif[i].diff }} &darr;</p>
+                          </div>
+                          <div *ngIf="Rdif[i].diff == 0" style="display: inline-block;">
+                              <p style="margin-top: -10px; color: black; display: inline; font-weight: bolder ;">  = </p>
+                          </div>
+                          
+                      </div>
+                      
+                          <div style="width: 10%;">
+                              <img class="filter" src="{{ r.image.Photo }}" style="width: 80px;height: 80px; border-radius: 5px; object-fit: cover;" (click)="Seeprofile(r.image.User_Id)">
+                          </div>
+                          <div style="width: 70%;">
+                              <h3 style="margin-top: 2px;">{{ r.image.Name_photo }}</h3>
+                              <p style="margin-top: -10px;" >BY: {{ r.image.UserName }}</p>
+                          </div>
+                          <div style="width: 5%;">
+                              <h3>{{ r.V_Score }}</h3>
+                          </div>
+                      </div>
+                  </mat-card-content>
+              </mat-card>
+          </div>
+      </div>
+
+      
+<!-- rank all -->
+      <div id="rank" style="margin-left: 10px; margin-right: 10px;">
+        <hr style="margin-top: 30px;">
+        <div style="display: flex; flex-direction: row; margin-left: 45%;">
+            <h1 style="margin-top: 4%; "> Rank </h1>&nbsp;&nbsp;
+            <img src="/assets/photo/trophy.png" alt=""  style="width: 8%;height: 8%; margin-top: 20px;">
+        </div>
+       <hr style="margin-top: -20 px;"> 
+        <div style="display: flex; flex-direction: row;margin-top: 2%;">
+            <h3 style="margin-left: 50px;">Minecraft characters</h3>
+            <h3 style="margin-left: auto; margin-right: 120px;">score</h3>
+        </div>
+         
+        <div *ngFor="let r of Rall ; let i = index">
+        <mat-card style="margin-bottom: 5px;width: 90%; margin-left: 50px;">
+            <mat-card-content>
+              
+                <div style="display: flex; flex-direction: row; width: 100%; color: black;">
+                  <div style="width: 5%;">
+                    <div style="display: flex; flex-direction: row;">
+                    <h4 style="margin-top: 2px; margin-right: 5px;">{{ i + 1 }}</h4>
+                    <img src="/assets/photo/winner.png" alt="" *ngIf="i < 1" style="width: 60%;height: 60%;">
+                </div>
+                </div>
+                
+                    <div style="width: 10%;">
+                        <img class="filter" src="{{ r.Photo }}" style="width: 80px;height: 80px; border-radius: 5px; object-fit: cover;" (click)="Seeprofile(r.User_Id)">
+                    </div>
+                    <div style="width: 75%;">
+                        <h3 style="margin-top: 2px;">{{ r.Name_photo }}</h3>
+                        <p style="margin-top: -10px;" >BY: {{ r.UserName }}</p>
+                    </div>
+                    <div style="width: 5%;">
+                        <h3>{{ r.Score }}</h3>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+        </div>
+      </div>
+    </div>
+
+
+<!-- model -->
+    <div *ngIf="isModelOpen" class="cont">
+        <div  class="modal" style=" position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);">
+        <div class="card" *ngIf="dataPerson">
+            <div class="infos">
+                <div class="image">
+                    <img src="{{dataPerson[0].Avatar}}" alt="" class="image">
+                </div>
+                <div class="info">
+                    <div>
+                        <p class="name">
+                            {{dataPerson[0].Name}}
+                        </p>
+                        <p class="function"> 
+                           User name : {{dataPerson[0].UserName}}
+                        </p>
+                    </div>
+                    <div class="stats">
+                            <p class="flex flex-col">
+                                Image
+                                <span class="state-value">
+                                   {{constants.length}}
+                                </span>
+                            </p>
+                            <p class="flex">
+                                Overall Score
+                                <span class="state-value">
+                                   {{sumS}}
+                                </span>
+                            </p>
+
+                    </div>
+                </div>
+            </div>
+            <button class="request" type="button" (click)="closeModel()">
+                close
+                </button>
+        </div>
+    </div>
+    </div>
+</body>

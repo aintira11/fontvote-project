@@ -34,6 +34,7 @@ export class MyprofilePostComponent implements OnInit{
   imageForm!: FormGroup;
   Name_photo: string = ''; 
   Photo: File | undefined;
+  Rank: any;
   
   constructor(private Constants: Constants,
                private route: ActivatedRoute,
@@ -56,18 +57,26 @@ export class MyprofilePostComponent implements OnInit{
     });
     console.log(this.data);
     this.myphoto(this.data.User_Id);
+    this.photoRank(this.data.User_Id);
   }
 
   delay(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
+  //แสดงอันดับของรูปภาพ
+  photoRank(User_Id : number){
+    const url = this.Constants.API_ENDPOINT+'/rankink/myrank/'+User_Id;
+    this.http.get(url).subscribe((response: any) => {
+      this.Rank = response; 
+      console.log("photoRank :",this.Rank); 
+    });
+  }
   async myphoto(User_Id : any) {
     const url = this.Constants.API_ENDPOINT+'/myPhoto/User_Id?User_Id='+User_Id;
-    // ส่งคำขอ GET ไปยัง URL ที่มีค่า User_Id แทนใน URL
     this.http.get(url).subscribe((response: any) => {
-      this.constants = response; // กำหนดค่า constants เป็นข้อมูลรูปภาพที่ได้รับจากเซิร์ฟเวอร์
-      console.log("Image User :",this.constants); // แสดงข้อมูลรูปภาพในคอนโซล
+      this.constants = response; 
+      console.log("Image User :",this.constants); 
     });
 
       this.isLoading = true;
@@ -109,16 +118,43 @@ export class MyprofilePostComponent implements OnInit{
       return; // หยุดการดำเนินการต่อไป
   }
 
+
+  const formData = new FormData();
     const fileInput = document.getElementById('Photo') as HTMLInputElement;
     if (!fileInput || !fileInput.files || fileInput.files.length === 0) {
       alert('Please select an image file');
+      // formData.append('Name_photo', (document.getElementById('Name_photo') as HTMLInputElement).value);
+      // const Photo = this.Data_image[0].Photo; 
+      // const Name_photo = formData;
+      // //ถ้าไม่มีการเลือกรูปใหม่ให้ส่งรูปเดิมไปทำที่ updateImage()
+      // this.updateImage(ImageID,Name_photo, Photo); // Call the function to update the image with the existing photo
       return;
     }
   
-    const formData = new FormData();
+    
     formData.append('Name_photo', (document.getElementById('Name_photo') as HTMLInputElement).value);
     formData.append('Photo', fileInput.files[0]);
   
+    const urledit = this.Constants.API_ENDPOINT+'/edit/Image/'+ ImageID;
+    this.http.put(urledit,formData).subscribe(
+      response => {
+        console.log('save Image successfully:', response);
+        alert(' save Image successfully!');
+        location.reload();
+      },
+      error => {
+        console.error('Error uploading image:', error);
+        alert('An error occurred while uploading image.');
+      }
+    );
+  }
+
+  //กรณีที่ไม่มีการเลือกรูปใหม่ แก้ไขแค่ชื่อ
+  updateImage(ImageID: number,Name_photo:any, Photo: any) {
+    const formData = new FormData();
+    formData.append('Name_photo',Name_photo);
+    formData.append('Photo', Photo); // Use the existing photo
+    
     const urledit = this.Constants.API_ENDPOINT+'/edit/Image/'+ ImageID;
     this.http.put(urledit,formData).subscribe(
       response => {

@@ -54,7 +54,7 @@ export class MainComponent implements OnInit {
 
   constructor(private Constants: Constants, private route: ActivatedRoute, private http: HttpClient,private router : Router) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
    
     //รับข้อมูล จากหน้าที่ส่งมา
     this.route.paramMap.subscribe(params => {
@@ -64,8 +64,11 @@ export class MainComponent implements OnInit {
     });
     console.log(this.data);
     this.randomimage();
-    this.Rank();
-    this.diff();
+    // this.Rank();
+    // this.diff();
+      this.isLoading = true;
+      await this.delay(2000); // รอเวลา 5 วินาที
+      this.isLoading = false;
   }
 
 
@@ -184,30 +187,30 @@ logout() {
     this.router.navigate(['/myprofile/post'], { state: { data: this.data } });
     }
 
-    WhoProfile(User_Id :HTMLInputElement ) {
-      console.log("User_Id : ",User_Id);
-      this.router.navigate(['/profilePerson'], { state: { data: User_Id } });
-      }
+ Rankpage() {
+    this.router.navigate(['/rank'], { state: { data: this.data } });
+    }
 
-      uploadPhoto(User_Id : number) {
-        console.log("User_Id : ",User_Id);
-        this.router.navigate(['/upload'], { state: { data: User_Id } });
-        }
+  WhoProfile(User_Id :HTMLInputElement ) {
+    console.log("User_Id : ",User_Id);
+    this.router.navigate(['/profilePerson'], { state: { data: User_Id } });
+    }
 
-        Statistics(User_Id: any) {
-          console.log("User ID :" , User_Id);
-          this.router.navigate(['/statistics'], { state: { data: User_Id } });
-  
-          }
+  Statistics(User_Id: any) {
+     console.log("User ID :" , User_Id);
+     this.router.navigate(['/statistics'], { state: { data: User_Id } });
+  }
 
-          diff(){
-            const urlall = this.Constants.API_ENDPOINT+'/rankDiff/get/diff';
+ diff(){
+   const urlall = this.Constants.API_ENDPOINT+'/rankDiff/get/diff';
+   
+   this.http.get(urlall).subscribe((rankdiff: any) => {
+   this.Rdif = rankdiff;
+  console.log("Rank Diff",this.Rdif[0]); 
+  }); 
+ }
+
             
-            this.http.get(urlall).subscribe((rankdiff: any) => {
-            this.Rdif = rankdiff;
-           console.log("Rank Diff",this.Rdif); 
-           }); 
-          }
 
 } 
 

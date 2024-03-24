@@ -11,6 +11,7 @@ import { EdituploadComponent } from './components/editupload/editupload.componen
 import { AdminComponent } from './components/admin/admin.component';
 import { AdminseeproComponent } from './components/adminseepro/adminseepro.component';
 import { ProfilepersonComponent } from './components/profileperson/profileperson.component';
+import { RankComponent } from './components/rank/rank.component';
 
 export const routes: Routes = [
   {path: '',component: MainComponent},
@@ -23,6 +24,7 @@ export const routes: Routes = [
   { path: 'upload', component: MyprofileUploadPhotoComponent },
   { path: 'statistics', component: MyprofileStatisticsoComponent },
   { path: 'profilePerson', component: ProfilepersonComponent },
+  { path: 'rank', component: RankComponent },
   { 
     path: 'myprofile',
     component: MyprofileComponent,

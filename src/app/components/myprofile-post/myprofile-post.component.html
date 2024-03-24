@@ -56,6 +56,8 @@
     font-weight: 500;
   }
 </style>
+
+<!-- -------------------------------------------------------------------------------------------------------------------- -->
 <div *ngIf="isLoading; else content" style="position: absolute;top: 80%;left: 48%;transform: translate(-50%,-50%);">
     <div class="loading">
         <span></span>
@@ -70,10 +72,23 @@
 <ng-template #content>
 <div *ngIf="constants" >
     <h3>{{constants.length}} / 5 </h3>
-    <div style="display: flex; flex-wrap: wrap; ">
-    <div *ngFor="let image of constants" >
-            
-            <div style="width: 20%; margin-top: 3%;padding: 5px;">
+    <div >
+      <!-- คะแนน -->
+      <div style="display: flex; flex-wrap: wrap; ">
+      <div *ngFor="let k of Rank"  style="display: flex; flex-direction: row;padding-left: 30px; padding-right: 50px;" >&nbsp; &nbsp;
+        
+          <p>Score : {{k.Score}}</p> &nbsp; &nbsp;&nbsp; 
+          <mat-icon class="material-symbols-outlined" style="margin-top: 15px; color: rgb(255, 213, 0);">           
+           military_tech
+         </mat-icon> &nbsp;
+         <p >{{k.rank}}</p>&nbsp;
+        
+      </div>
+    </div>
+      <!-- รูป -->
+      <div style="display: flex; flex-wrap: wrap;" >
+      <div *ngFor="let image of constants" >
+            <div style="width: 20%; margin-top: 1%;padding: 5px;">
                 <img class="zoom" src="{{image.Photo}}" alt="error"  style=" width: 238px;height: 238px; padding: 5px; border: 1px solid black; box-sizing: border-box; background-color: rgb(255, 255, 255); object-fit: cover;" (click)="EditPhoto(image.ImageID)">
             </div>
             <div style="display: flex; align-items: center; justify-content: center;">
@@ -87,6 +102,7 @@
 
     </div>
     </div>
+  </div>
 
     <!-- Modal -->
         <div *ngIf="isModelOpen" class="cont">

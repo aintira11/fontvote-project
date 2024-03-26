@@ -55,9 +55,7 @@
                             <div style="display: flex; flex-direction: row;">
                           <h4 style="margin-top: 2px; margin-right: 5px;" >{{ i + 1 }}</h4>
                           <img src="/assets/photo/medal.png" alt="" *ngIf="i < 3" style="width: 20%;height: 20%;">
-                          <!-- <mat-icon class="material-symbols-outlined" style="color: yellow;" *ngIf="i < 3">
-                            military_tech
-                            </mat-icon> -->
+                         
                            
                         </div>
                           <div *ngIf="Rdif[i].diff > 0" style="display: inline-block;">
@@ -69,6 +67,9 @@
                           <div *ngIf="Rdif[i].diff == 0" style="display: inline-block;">
                               <p style="margin-top: -10px; color: black; display: inline; font-weight: bolder ;">  = </p>
                           </div>
+                          <div *ngIf="Rdif[i].diff == null" style="display: inline-block;">
+                            <p style="margin-top: -10px; color: black; display: inline; font-weight: bolder ;">  - </p>
+                        </div>
                           
                       </div>
                       
@@ -133,8 +134,8 @@
 
 
 <!-- model -->
-    <div *ngIf="isModelOpen" class="cont">
-        <div  class="modal" style=" position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);">
+    <div *ngIf="isModelOpen" class="cont" >
+        <div class="modal" style=" position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);background-color:rgba(31, 41, 55, 1);">
         <div class="card" *ngIf="dataPerson">
             <div class="infos">
                 <div class="image">
@@ -166,10 +167,18 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <hr>
+        <h4 style="text-align: center;color: white;margin-top: -2px;">Image </h4>
+        <div  style="display: flex; flex-wrap: wrap; margin-top: 5px;">
+            <div *ngFor="let p of constants" style="margin-left: 20px;">
+                <img src="{{p.Photo}}" alt="" style="width: 80px; height: 80px; object-fit: cover;">
+                <p style="color: white;">{{p.Name_photo}}</p>
+            </div>
+        </div>
             <button class="request" type="button" (click)="closeModel()">
                 close
                 </button>
         </div>
-    </div>
     </div>
 </body>

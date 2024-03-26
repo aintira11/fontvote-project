@@ -64,7 +64,7 @@ export class LoginComponent {
     );
     
     this.dataLogin = data as modelUser[];
-    console.log(data);
+    // console.log(data);
     if (this.dataLogin.length > 0) {
       // ตรวจสอบว่ามีข้อมูลใน dataLogin หรือไม่
       const isAdmin = this.dataLogin.some(user => user.Type === 'admin');

@@ -114,7 +114,7 @@ export class MyprofileUploadPhotoComponent {
         const url = this.Constants.API_ENDPOINT + '/getdata/read/' + this.data;
         this.http.get(url).subscribe((dataPerson: any) => {
           this.Data = dataPerson;
-          console.log(this.Data);
+          // console.log(this.Data);
           // ทำการเรียก navigate หลังจากที่ได้รับข้อมูลแล้ว
           this.router.navigate(['/myprofile'], { state: { data: this.Data[0] } });
           this.router.navigate(['/myprofile/post'], { state: { data: this.Data[0] } });

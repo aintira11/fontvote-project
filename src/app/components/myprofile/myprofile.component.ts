@@ -36,7 +36,7 @@ export class MyprofileComponent {
       // this.printdata();
         
     });
-    console.log("data frofile  :" ,this.data);
+    // console.log("data frofile  :" ,this.data);
     this.myphoto(this.data.User_Id);
   }
   
@@ -68,7 +68,7 @@ export class MyprofileComponent {
         // ส่งคำขอ GET ไปยัง URL ที่มีค่า User_Id แทนใน URL
         this.http.get(url).subscribe((response: any) => {
           this.photo = response; // กำหนดค่า constants เป็นข้อมูลรูปภาพที่ได้รับจากเซิร์ฟเวอร์
-          console.log(this.Constants); // แสดงข้อมูลรูปภาพในคอนโซล
+          // console.log(this.Constants); 
         });
       }
 

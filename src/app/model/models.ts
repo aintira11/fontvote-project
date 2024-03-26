@@ -15,3 +15,5 @@ export interface modelUser {
     Avatar:   any;
     Type:     any;
 }
+
+// chart.interface.ts

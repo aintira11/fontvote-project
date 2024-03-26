@@ -25,9 +25,12 @@ import { modelUser } from '../../model/models';
 })
 export class AdminComponent {
 
+
   data: any;
   photo : string='';
   members: any[]=[];
+  dataDif: any;
+  dataimage: any;
   
   constructor(private Constants: Constants, private route: ActivatedRoute, private http: HttpClient,private router : Router) { }
   dataLogin: modelUser[] = [];
@@ -39,7 +42,7 @@ export class AdminComponent {
       this.Allmembers();
          
     });
-    console.log(this.data);
+    // console.log(this.data);
   }
   printdata() {
     const url = this.Constants.API_ENDPOINT+this.data[0].Avatar;
@@ -56,9 +59,24 @@ export class AdminComponent {
     
   }
 
-  SeePro() {
-    throw new Error('Method not implemented.');
-    }
+  isModelOpen: boolean = false;
+  openmodel(ImageID: any) {
+    const urlall = this.Constants.API_ENDPOINT+'/rankDiff/rank/diff/'+ImageID;
+    
+    this.http.get(urlall).subscribe((diff: any) => {
+      this.dataDif = diff;
+      console.log("dataDif image :",this.dataDif); // แสดงฟังก์ชัน randomimage
+   });
+   const dataimage = this.Constants.API_ENDPOINT+'/DataPhoto/data/'+ImageID;
+   this.http.get(dataimage).subscribe((data: any) => {
+    this.dataimage = data;
+    console.log("data image :",this.dataimage); // แสดงฟังก์ชัน randomimage
+ });
+   this.isModelOpen = true;
+  }
+  close(){
+    this.isModelOpen = false;
+  }
 
   logout() {
     this.data = [];

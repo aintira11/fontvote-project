@@ -55,7 +55,7 @@ export class MyprofilePostComponent implements OnInit{
       });
         
     });
-    console.log(this.data);
+    // console.log(this.data);
     this.myphoto(this.data.User_Id);
     this.photoRank(this.data.User_Id);
   }
@@ -92,7 +92,7 @@ export class MyprofilePostComponent implements OnInit{
     const dataimage = this.Constants.API_ENDPOINT+'/DataPhoto/data/'+ ImageID;
     this.http.get(dataimage).subscribe((Data:any)=>{
       this.Data_image = Data ;
-      console.log("Data_image :",this.Data_image);
+      // console.log("Data_image :",this.Data_image);
       
     });
     this.isModelOpen = true;

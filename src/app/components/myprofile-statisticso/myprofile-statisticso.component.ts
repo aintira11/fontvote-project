@@ -1,34 +1,43 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { Constants } from '../../config/constants';
-import { ActivatedRoute, Router ,RouterModule} from '@angular/router';
+import { ActivatedRoute, Router ,RouterModule, RouterOutlet} from '@angular/router';
 import { HttpClient,HttpClientModule } from '@angular/common/http';
 import { FormBuilder } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
 
+import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
+
 @Component({
   selector: 'app-myprofile-statisticso',
   standalone: true,
   imports: [CommonModule,
             ReactiveFormsModule,
-            HttpClientModule],
+            HttpClientModule,
+            RouterOutlet,
+            
+            CanvasJSAngularChartsModule],
   templateUrl: './myprofile-statisticso.component.html',
   styleUrl: './myprofile-statisticso.component.scss'
 })
 export class MyprofileStatisticsoComponent {
 
+  
+
   data: any;
   Data: any[]=[];
   databack : any;
   Rdif: any;
+  dataPoints!: any[];
 
   constructor(
     private Constants: Constants,
     private route: ActivatedRoute,
     private http: HttpClient,
     private formBuilder: FormBuilder,
-    private router : Router
+    private router : Router,
+    private cdRef: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -48,6 +57,8 @@ export class MyprofileStatisticsoComponent {
       this.Data = datavote;
       console.log("DAta static : ",this.Data);
     });
+
+   
   }
 
   getRandomColor() {
@@ -72,11 +83,12 @@ export class MyprofileStatisticsoComponent {
     const url = this.Constants.API_ENDPOINT + '/getdata/read/' + this.data;
     this.http.get(url).subscribe((dataPerson: any) => {
       this.databack = dataPerson;
-      console.log(this.databack);
+      // console.log(this.databack);
       // ทำการเรียก navigate หลังจากที่ได้รับข้อมูลแล้ว
       this.router.navigate(['/myprofile'], { state: { data: this.databack[0] } });
       this.router.navigate(['/myprofile/post'], { state: { data: this.databack[0] } });
     });
   }
 
+ 
 }

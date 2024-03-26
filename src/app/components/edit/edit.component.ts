@@ -58,12 +58,30 @@ Password: any;
   }
 
   
+  
   frofile(User_Id: number) {
+
+    if (!this.UserName) {
+      alert('Please enter the UserName .'); 
+      return; 
+    }
+    if (!this.Name) {
+      alert('Please enter the Name .'); 
+      return; 
+    }
+
+    if (!this.Email) {
+      alert('Please enter the Email .'); 
+      return; 
+  }
+
     const fileInput = document.getElementById('Avatar') as HTMLInputElement;
     if (!fileInput || !fileInput.files || fileInput.files.length === 0) {
       alert('Please select an image file');
       return;
     }
+
+
     const formData = new FormData();
     formData.append('UserName', (document.getElementById('UserName') as HTMLInputElement).value);
     formData.append('Name', (document.getElementById('Name') as HTMLInputElement).value);
@@ -76,8 +94,7 @@ Password: any;
       response => {
         console.log('save Image successfully:', response);
         alert(' save Frofile successfully!');
-        // location.reload();
-        //goback
+        this.back();
       },
       error => {
         console.error('Error frofile edit:', error);
@@ -104,7 +121,7 @@ Password: any;
       const dataimage = this.Constants.API_ENDPOINT+'/getdata/read/'+ User_Id;
       this.http.get(dataimage).subscribe((Data:any)=>{
         this.Data_User = Data ;
-        console.log("Data_User : ",this.Data_User);
+        // console.log("Data_User : ",this.Data_User);
         
       });
     }

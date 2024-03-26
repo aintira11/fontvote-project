@@ -62,7 +62,7 @@ export class MainComponent implements OnInit {
       // this.printdata();
         
     });
-    console.log(this.data);
+    // console.log(this.data);
     this.randomimage();
     // this.Rank();
     // this.diff();
@@ -124,7 +124,7 @@ export class MainComponent implements OnInit {
         next: (res) => {
           // console.log(res);
           this.apiData = res;     
-          console.log(this.apiData);
+          // console.log(this.apiData);
         },
         error: (err) => {
           console.error('error jaa', err);

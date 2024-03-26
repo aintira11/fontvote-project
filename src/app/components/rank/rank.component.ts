@@ -41,7 +41,7 @@ export class RankComponent {
       // this.printdata();
         
     });
-    console.log("data frofile  :" ,this.data);
+    // console.log("data frofile  :" ,this.data);
    
     this.Rank();
     this.diff();
@@ -118,7 +118,7 @@ export class RankComponent {
     const urlall = this.Constants.API_ENDPOINT+'/getdata/read/'+User_Id;
     this.http.get(urlall).subscribe((datapre: any) => {
     this.dataPerson = datapre;
-    console.log("Data Person :",this.dataPerson);
+    // console.log("Data Person :",this.dataPerson);
    }); 
    this.myphoto(User_Id);
    this.isModelOpen = true;

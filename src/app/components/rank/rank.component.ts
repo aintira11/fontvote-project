@@ -1,3 +1,5 @@
+//ts rank
+
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
@@ -71,7 +73,7 @@ export class RankComponent {
     for (let i = 0; i < this.Rdif.length; i++) {
        dataRdiff = this.Rdif;
     }
-    console.log("Rank Diff",dataRdiff);
+    // console.log("Rank Diff",dataRdiff);
    }); 
   }
 
@@ -83,7 +85,7 @@ export class RankComponent {
     for (let i = 0; i < this.Rall.length; i++) {
       datarankAll = this.Rall;
     }
-    console.log("Rank all",datarankAll);
+    // console.log("Rank all",datarankAll);
    }); 
   }
 

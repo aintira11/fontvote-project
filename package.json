@@ -21,7 +21,6 @@
     "@angular/platform-browser-dynamic": "^17.2.0",
     "@angular/router": "^17.2.0",
     "@canvasjs/angular-charts": "^1.2.0",
-    "chart.js": "^4.4.2",
     "firebase": "^10.8.1",
     "mysql": "^2.18.1",
     "rxjs": "~7.8.0",

@@ -34,7 +34,6 @@ export class AdminComponent {
   
   constructor(private Constants: Constants, private route: ActivatedRoute, private http: HttpClient,private router : Router) { }
   dataLogin: modelUser[] = [];
-  // dataLogin: any[] = [];
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {

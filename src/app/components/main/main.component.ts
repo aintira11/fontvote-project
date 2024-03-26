@@ -206,7 +206,7 @@ logout() {
    
    this.http.get(urlall).subscribe((rankdiff: any) => {
    this.Rdif = rankdiff;
-  console.log("Rank Diff",this.Rdif[0]); 
+  // console.log("Rank Diff",this.Rdif[0]); 
   }); 
  }
 

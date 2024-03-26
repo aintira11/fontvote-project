@@ -7,8 +7,6 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
 
-import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
-
 @Component({
   selector: 'app-myprofile-statisticso',
   standalone: true,
@@ -17,13 +15,11 @@ import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
             HttpClientModule,
             RouterOutlet,
             
-            CanvasJSAngularChartsModule],
+            ],
   templateUrl: './myprofile-statisticso.component.html',
   styleUrl: './myprofile-statisticso.component.scss'
 })
 export class MyprofileStatisticsoComponent {
-
-  
 
   data: any;
   Data: any[]=[];
@@ -75,7 +71,7 @@ export class MyprofileStatisticsoComponent {
     const urlall = this.Constants.API_ENDPOINT+'/rankDiff/get/diff/'+ User_Id;
     this.http.get(urlall).subscribe((rankdiff: any) => {
     this.Rdif = rankdiff;
-   console.log("Rank Diff :",this.Rdif); 
+  //  console.log("Rank Diff :",this.Rdif); 
    }); 
   }
 

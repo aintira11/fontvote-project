@@ -67,7 +67,7 @@ export class MainComponent implements OnInit {
     // this.Rank();
     // this.diff();
       this.isLoading = true;
-      await this.delay(2000); // รอเวลา 5 วินาที
+      await this.delay(2500); // รอเวลา 5 วินาที
       this.isLoading = false;
   }
 
@@ -143,7 +143,7 @@ export class MainComponent implements OnInit {
   } else{
     this.randomimage();
       this.isLoading = true;
-      await this.delay(2000); // รอเวลา 5 วินาที
+      await this.delay(2500); // รอเวลา 5 วินาที
       this.isLoading = false;
     
   }
@@ -160,7 +160,7 @@ openModel() {
   this.isModelOpen = false;
    this.randomimage();
       this.isLoading = true;
-      await this.delay(2000); // รอเวลา 5 วินาที
+      await this.delay(2500); // รอเวลา 5 วินาที
       this.isLoading = false;
  
 }

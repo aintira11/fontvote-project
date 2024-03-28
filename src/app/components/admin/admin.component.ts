@@ -9,6 +9,9 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Constants } from '../../config/constants';
 import { modelUser } from '../../model/models';
 
+import { Injectable } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
 @Component({
   selector: 'app-admin',
   standalone: true,
@@ -18,7 +21,8 @@ import { modelUser } from '../../model/models';
     MatCardModule,
     RouterModule,
     HttpClientModule,
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.scss'
@@ -31,8 +35,15 @@ export class AdminComponent {
   members: any[]=[];
   dataDif: any;
   dataimage: any;
+
+  cooldownTimeValue!: any ;
+  Time: any;
   
-  constructor(private Constants: Constants, private route: ActivatedRoute, private http: HttpClient,private router : Router) { }
+  constructor(private Constants: Constants, 
+              private route: ActivatedRoute,
+               private http: HttpClient,
+               private router : Router,
+              ) { }
   dataLogin: modelUser[] = [];
 
   ngOnInit(): void {
@@ -43,6 +54,35 @@ export class AdminComponent {
     });
     // console.log(this.data);
   }
+
+  
+  setCooldown() {
+    console.log(this.cooldownTimeValue);
+    
+    const url = this.Constants.API_ENDPOINT + '/post/' + this.cooldownTimeValue;
+    this.http.post(url, {}).subscribe({
+      next: (res) => {
+        console.log(res);
+        
+        console.log('Cooldown time has been set successfully.');
+        alert('Cooldown time has been set successfully.');
+        this.gettime();
+      },
+      error: (error) => {
+        console.error('Error setting cooldown time:', error);
+      }
+    });
+}
+gettime(){
+  const url = this.Constants.API_ENDPOINT+'/get/time';
+  this.http.get(url).subscribe((timeget: any) => {
+    this.Time = timeget;
+    console.log("Time : ", JSON.stringify(this.Time) + " มิลลิวินาที");
+  });
+}
+
+
+  
   printdata() {
     const url = this.Constants.API_ENDPOINT+this.data[0].Avatar;
     this.photo =url;

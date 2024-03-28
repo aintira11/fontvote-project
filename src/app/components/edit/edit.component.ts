@@ -36,7 +36,7 @@ Avatar: File | undefined;
 data: any;
 Data_User: any;
 Password: any;
-  Data: any;
+Data: any;
 
   constructor(private Constants: Constants, private route: ActivatedRoute, private http: HttpClient,private router : Router, private formBuilder: FormBuilder,) { }
   

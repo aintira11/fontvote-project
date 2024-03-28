@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { MyprofileComponent } from './components/myprofile/myprofile.component';
 import { RouterModule } from '@angular/router';
 import { MainComponent } from './components/main/main.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,7 @@ import { MainComponent } from './components/main/main.component';
             MyprofileComponent,
             RouterModule,
             MainComponent,
+            HttpClientModule
           ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

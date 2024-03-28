@@ -17,6 +17,18 @@
     <button mat-button style="transform: scale(1.3); margin-left: 10%;color: white; ">Member</button>
     <button mat-button style="transform: scale(1.3);margin-right: 10%; color: white;" (click)="logout()">Log out</button>
 </div>
+
+<!-- <div>
+  <h2>Set Cooldown</h2>
+  <div>
+    <label for="cooldownTime">Cooldown Time (minutes):</label>
+    <input type="number" id="cooldownTime" name="cooldownTime" [(ngModel)]="cooldownTimeValue" required>
+  </div>
+  <button type="button" (click)="setCooldown()">Set Cooldown</button>
+</div> -->
+
+
+
 <hr style="border: 1px solid rgb(255, 255, 255); margin-bottom: 2%;">
 
 <div *ngIf="members " style="display: flex; flex-wrap: wrap; " >

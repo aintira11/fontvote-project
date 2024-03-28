@@ -56,16 +56,20 @@ export class MyprofileStatisticsoComponent implements OnInit {
   }
 
   createChartData(votes: any[]): any {
-    const maxDate = new Date();
-    const minDate = new Date(maxDate);
-    minDate.setDate(maxDate.getDate() - 6); // นับย้อนหลัง 7 วัน
-  
+    const today = new Date();
+    const maxDate = new Date(today);
+    const minDate = new Date(today);
+    minDate.setDate(today.getDate() - 6); // นับย้อนหลัง 6 วัน เพราะวันนี้ถือเป็นหนึ่งใน 7 วัน
+    console.log(today);
+    
+
     const labels = [];
     const data = [];
   
     for (let currentDate = new Date(minDate); currentDate <= maxDate; currentDate.setDate(currentDate.getDate() + 1)) {
       labels.push(currentDate.toISOString().slice(0, 10));
-  
+      
+      // ค้นหาข้อมูลโหวตใน votes ที่มีวันที่ตรงกับ currentDate
       const vote = votes.find(v => v.Date_vote.slice(0, 10) === currentDate.toISOString().slice(0, 10));
       if (vote) {
         data.push(vote.V_Score);
@@ -73,8 +77,12 @@ export class MyprofileStatisticsoComponent implements OnInit {
         data.push(null); // ใส่ค่า null ในกรณีที่ไม่มีข้อมูลในวันนั้น
       }
     }
+  
+    console.log(labels);
+    console.log(data);
     return { labels, data };
   }
+  
   
 
   createCharts(): void {

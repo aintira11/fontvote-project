@@ -51,6 +51,9 @@ export class MainComponent implements OnInit {
   apiData: any;
   
   isLoading: boolean = false;
+  lastVoteTime: Date | null = null; // เวลาล่าสุดที่โหวต
+  votedImages: Record<string, Date> = {}; // เก็บเวลาโหวตของแต่ละรูปภาพ (key: ImageID, value: lastVoteTime)
+  Time: any;
 
   constructor(private Constants: Constants, private route: ActivatedRoute, private http: HttpClient,private router : Router) { }
 
@@ -64,13 +67,24 @@ export class MainComponent implements OnInit {
     });
     // console.log(this.data);
     this.randomimage();
+    this.loadRandomImage();
+    this.gettime();
     // this.Rank();
     // this.diff();
       this.isLoading = true;
       await this.delay(2500); // รอเวลา 5 วินาที
       this.isLoading = false;
+
+      
   }
 
+  loadRandomImage() {
+    const urlall = this.Constants.API_ENDPOINT + '/random/random/image';
+    this.http.get(urlall).subscribe((picran: any) => {
+      // แสดงรูปภาพ
+      this.randomPhoto = picran;
+    });
+  }
 
   randomimage() {
     // ดึง URL ของ API ที่มีข้อมูลรูปภาพสุ่ม
@@ -96,12 +110,36 @@ export class MainComponent implements OnInit {
   isModelOpen: boolean = false;
   isSwitch :boolean = true;
 
-  async Vote(ImageID: HTMLInputElement) {
+  gettime(){
+    const url = this.Constants.API_ENDPOINT+'/get/time';
+    this.http.get(url).subscribe((timeget: any) => {
+      this.Time = timeget;
+      console.log("Time : ", JSON.stringify(this.Time) + " มิลลิวินาที");
+    });
+  }
+  async Vote(ImageID: string) {
     const ImageID1 = this.randomPhoto.photo1.ImageID;
     const ImageID2 = this.randomPhoto.photo2.ImageID;
 
     let Score1: number;
     let Score2: number;
+
+    // ตรวจสอบเวลาโหวตของรูปภาพที่ถูกโหวต
+    const lastVoteTimeOfImage = this.votedImages[ImageID];
+    console.log(lastVoteTimeOfImage);
+    
+    if (lastVoteTimeOfImage) {
+      const currentTime = new Date();
+      const elapsedTime = currentTime.getTime() - lastVoteTimeOfImage.getTime();
+      const cooldownTime = 60000; // ให้ cooldown รูปภาพที่โหวตไปแล้ว 1 นาที (60000 milliseconds)
+      console.log("cooldownTime",cooldownTime);
+      
+      if (elapsedTime < cooldownTime) {
+        console.log('Cannot vote yet. Cooldown in progress...');
+        alert('Cannot vote yet. Cooldown in progress....');
+        return; // ไม่สามารถโหวตรูปภาพได้ในขณะที่ยังในระหว่างระยะเวลา cooldown
+      }
+    }
 
     // กำหนดค่า Score1 และ Score2 ตามการโหวต
     if (ImageID === this.randomPhoto.photo1.ImageID) {
@@ -135,8 +173,10 @@ export class MainComponent implements OnInit {
         // }
     });
 
-  
-
+    // บันทึกเวลาโหวตล่าสุดของรูปภาพนี้
+    this.votedImages[ImageID] = new Date();
+    console.log(this.lastVoteTime);
+ 
     
   if (this.isSwitch) {
     this.openModel();

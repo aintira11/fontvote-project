@@ -189,7 +189,6 @@ export class MyprofilePostComponent implements OnInit{
         this.isLoading = true;
         await this.delay(2000); // รอเวลา 5 วินาที
         this.isLoading = false;
-   
   }
 
   delete(ImageID: number) {
